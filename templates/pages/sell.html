@@ -33,7 +33,7 @@
 							</div>
 							<div class="input-block">
 								<div class="input-wrap">
-									<input id="location" type="text" name="text" value="" placeholder="Адрес объекта">
+									<input id="location" type="text" name="text" onblur="test(this.value)" value="" placeholder="Адрес объекта">
 								</div>
 							</div>
 							<div class="location-map">
@@ -183,9 +183,12 @@
 
     <script>
 
-       ymaps.ready(init);
+      ymaps.ready(init);
 
-
+      let map = ymaps,
+          geoResult = undefined,
+          gmap= undefined,
+          gplacemark = undefined
 
 function init() {
     var myPlacemark,
@@ -195,6 +198,7 @@ function init() {
         }, {
             searchControlProvider: 'yandex#search'
         });
+    gmap = myMap
 
 
     myMap.events.add('click', function (e) {
@@ -203,6 +207,7 @@ function init() {
         // Если метка уже создана – просто передвигаем ее.
         if (myPlacemark) {
             myPlacemark.geometry.setCoordinates(coords);
+             gplacemark = myPlacemark
         }
         // Если нет – создаем.
         else {
@@ -212,6 +217,7 @@ function init() {
             myPlacemark.events.add('dragend', function () {
                 getAddress(myPlacemark.geometry.getCoordinates());
             });
+             gplacemark = myPlacemark
         }
         getAddress(coords);
     });
@@ -231,6 +237,7 @@ function init() {
         myPlacemark.properties.set('iconCaption', 'поиск...');
         ymaps.geocode(coords).then(function (res) {
             var firstGeoObject = res.geoObjects.get(0);
+            geoResult = firstGeoObject
 
             myPlacemark.properties
                 .set({
@@ -252,7 +259,41 @@ function init() {
 }
 
 
+function test(value) {
+    console.log(gmap)
 
+    map.geocode(value, {
+        /**
+         * Опции запроса
+         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/geocode.xml
+         */
+        // Сортировка результатов от центра окна карты.
+        // boundedBy: myMap.getBounds(),
+        // strictBounds: true,
+        // Вместе с опцией boundedBy будет искать строго внутри области, указанной в boundedBy.
+        // Если нужен только один результат, экономим трафик пользователей.
+        results: 1
+    }).then(function (res) {
+        // Выбираем первый результат геокодирования.
+        var firstGeoObject = res.geoObjects.get(0),
+            // Координаты геообъекта.
+            coords = firstGeoObject.geometry.getCoordinates(),
+            // Область видимости геообъекта.
+            bounds = firstGeoObject.properties.get('boundedBy');
+
+        firstGeoObject.options.set('preset', 'islands#darkBlueDotIconWithCaption');
+        // Получаем строку с адресом и выводим в иконке геообъекта.
+        firstGeoObject.properties.set('iconCaption', firstGeoObject.getAddressLine());
+
+        // Добавляем первый найденный геообъект на карту.
+        gmap.geoObjects.add(firstGeoObject);
+        // Масштабируем карту на область видимости геообъекта.
+        gmap.setBounds(bounds, {
+            // Проверяем наличие тайлов на данном масштабе.
+            checkZoomRange: true
+        });
+    })
+}
 
     </script>
 {% endblock %}
