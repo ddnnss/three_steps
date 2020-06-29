@@ -1,0 +1,29 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+	<!-- start page -->
+	<section class="page">
+		<div class="page-top" style="background-image: url({% static 'img/page-bg-4.jpg' %});">
+			<div class="page-top__wrap">
+				<h1 class="page-head" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">Собственникам</h1>
+			</div>
+		</div>
+	</section>
+	<!-- end page -->
+	<!-- start sell -->
+	<section class="sell sell-second">
+		<div class="wrapper">
+			<div class="sell-top" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+				<p>Вы – собственник и хотите продать жилье, или сдать его в аренду? Наше агентство предлагает выгодные условия для собственников. Консультации по любым вопросам, касающихся продажи или аренды жилья, юридическое сопровождение, риелторские услуги и многое другое. Предлагаем заполнить форму заявки, чтобы получить бесплатную консультацию. Наши менеджеры свяжутся с Вами в ближайшее время.</p>
+			</div>
+			<h2 class="page-title" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">Записаться на бесплатную консультацию</h2>
+			{% include 'pages/cb_form.html' %}
+		</div>
+	</section>
+	<!-- end sell -->
+{% endblock %}
+
+{% block js %}
+{{ block.super }}
+{% endblock %}

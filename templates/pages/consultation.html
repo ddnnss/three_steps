@@ -1,0 +1,29 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+<!-- start page -->
+	<section class="page">
+		<div class="page-top" style="background-image: url({% static 'img/page-bg-2.jpg' %});">
+			<div class="page-top__wrap">
+				<h1 class="page-head" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">Бесплатная консультация</h1>
+			</div>
+		</div>
+	</section>
+	<!-- end page -->
+	<!-- start sell -->
+	<section class="sell sell-second">
+		<div class="wrapper">
+			<div class="sell-top" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+				<p>Знакома ситуация, когда два жилья с одинаковыми характеристиками продаются по разным ценам? Наше агентство готово проконсультировать Вас по поводу ситуации на рынке недвижимости, чтобы Вы не попадали в неловкую ситуацию. Чтобы записаться на бесплатную консультацию, заполните форму ниже и наши менеджеры свяжутся с Вами в ближайшее время. </p>
+			</div>
+			<h2 class="page-title" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">Записаться на бесплатную консультацию</h2>
+			{% include 'pages/cb_form.html' %}
+		</div>
+	</section>
+	<!-- end sell -->
+{% endblock %}
+
+{% block js %}
+{{ block.super }}
+{% endblock %}

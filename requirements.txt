@@ -1,0 +1,4 @@
+django-ckeditor
+pillow
+pytils
+easy-thumbnails==2.7

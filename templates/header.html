@@ -1,0 +1,122 @@
+{% load static %}
+<!-- start header -->
+	<header class="header">
+		<div class="header-top">
+			<div class="wrapper">
+				<div class="header-logo">
+					<a href="#">
+						<img src="{% static 'img/logo.png' %}" alt="">
+					</a>
+				</div>
+				<div class="header-info">
+					<div class="header-col header-col__1">
+						<div class="input-block">
+							<div class="select">
+								<div class="select-main">
+									<div class="select-text">Ваш город</div>
+									<div class="input-icon">
+										<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
+									</div>
+								</div>
+								<div class="select-info">
+									<ul>
+										<li>Ваш город</li>
+										<li>Ваш город2</li>
+										<li>Cанкт-Петербург</li>
+									</ul>
+								</div>
+								<input type="text" name="text" class="select-value">
+							</div>
+						</div>
+						<p class="header-city">Королев</p>
+					</div>
+					<div class="header-col header-col__2">
+						<b>Ежедневно</b>
+						<p>10:00–22:00</p>
+					</div>
+					<div class="header-col header-col__3">
+						<div class="header-phone">
+							<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.6367 11.2734C18.5117 15.3906 15.3906 18.5117 11.2734 20.6367L8.15234 17.5156C7.70964 17.0729 7.22266 16.9622 6.69141 17.1836C5.09766 17.7148 3.41536 17.9805 1.64453 17.9805C1.24609 17.9805 0.914062 18.1133 0.648438 18.3789C0.382812 18.6445 0.25 18.9766 0.25 19.375V24.3555C0.25 24.7539 0.382812 25.0859 0.648438 25.3516C0.914062 25.6172 1.24609 25.75 1.64453 25.75C8.28516 25.75 13.974 23.4036 18.7109 18.7109C23.4036 13.974 25.75 8.28516 25.75 1.64453C25.75 1.24609 25.6172 0.914062 25.3516 0.648438C25.0859 0.382812 24.7539 0.25 24.3555 0.25H19.375C18.9766 0.25 18.6445 0.382812 18.3789 0.648438C18.1133 0.914062 17.9805 1.24609 17.9805 1.64453C17.9805 3.41536 17.7148 5.09766 17.1836 6.69141C17.0065 7.26693 17.1172 7.75391 17.5156 8.15234L20.6367 11.2734Z" fill="#383838"/></svg>
+							<ul>
+								<li><a href="#">8 (495) 760-20-58</a></li>
+								<li><a href="#">8 (910) 464-93-77</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="header-col header-col__4">
+						<p>г. Королев, г. Балашиха,<br>г. Москва, г. Мытищи, г. Пушкино</p>
+					</div>
+				</div>
+				<div class="header-btns">
+					<a href="#" class="main-btn">Добавить объявление</a>
+					<a href="{% url 'consultation' %}" class="second-btn">Оценка недвижимости</a>
+				</div>
+				<div class="header-bar">
+					<span></span>
+				</div>
+			</div>
+		</div>
+		<div class="header-bottom">
+			<div class="wrapper">
+				<div class="header-row">
+					<div class="header-over">
+						<div class="header-mob">
+							<div class="header-block">
+								<div class="header-block__row">
+									<div class="header-phone">
+										<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.6367 11.2734C18.5117 15.3906 15.3906 18.5117 11.2734 20.6367L8.15234 17.5156C7.70964 17.0729 7.22266 16.9622 6.69141 17.1836C5.09766 17.7148 3.41536 17.9805 1.64453 17.9805C1.24609 17.9805 0.914062 18.1133 0.648438 18.3789C0.382812 18.6445 0.25 18.9766 0.25 19.375V24.3555C0.25 24.7539 0.382812 25.0859 0.648438 25.3516C0.914062 25.6172 1.24609 25.75 1.64453 25.75C8.28516 25.75 13.974 23.4036 18.7109 18.7109C23.4036 13.974 25.75 8.28516 25.75 1.64453C25.75 1.24609 25.6172 0.914062 25.3516 0.648438C25.0859 0.382812 24.7539 0.25 24.3555 0.25H19.375C18.9766 0.25 18.6445 0.382812 18.3789 0.648438C18.1133 0.914062 17.9805 1.24609 17.9805 1.64453C17.9805 3.41536 17.7148 5.09766 17.1836 6.69141C17.0065 7.26693 17.1172 7.75391 17.5156 8.15234L20.6367 11.2734Z" fill="#383838"/></svg>
+										<ul>
+											<li><a href="#">8 (495) 760-20-58</a></li>
+											<li><a href="#">8 (910) 464-93-77</a></li>
+										</ul>
+									</div>
+									<div class="header-col">
+										<b>Ежедневно</b>
+										<p>10:00–22:00</p>
+									</div>
+								</div>
+								<div class="header-col header-col__4">
+									<p>г. Королев, г. Балашиха,<br>г. Москва, г. Мытищи, г. Пушкино</p>
+								</div>
+							</div>
+						</div>
+						<ul class="header-list">
+							<li><a href="{% url 'privatization' %}">Приватизация</a></li>
+							<li><a href="{% url 'consultation' %}">Бесплатная консультация</a></li>
+							<li class="drop">
+								<a href="#" class="drop-text">
+									Кредит
+									<svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.66406 0.00390625L7.48438 0.824219L3.98438 4.32422L0.484375 0.824219L1.30469 0.00390625L3.98438 2.68359L6.66406 0.00390625Z" fill="white"/></svg>
+								</a>
+								<ul class="drop-list">
+									<li><a href="{% url 'credit_help' %}">Помощь с кредитованием</a></li>
+									<li><a href="{% url 'credit_calculator' %}">Кредитный калькулятор</a></li>
+
+								</ul>
+							</li>
+							<li><a href="{% url 'owners' %}">Собственникам</a></li>
+							<li class="drop">
+								<a href="#" class="drop-text">
+									Полезное
+									<svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.66406 0.00390625L7.48438 0.824219L3.98438 4.32422L0.484375 0.824219L1.30469 0.00390625L3.98438 2.68359L6.66406 0.00390625Z" fill="white"/></svg>
+								</a>
+								<ul class="drop-list">
+									<li><a href="#">Полезное 1</a></li>
+									<li><a href="#">Полезное 2</a></li>
+									<li><a href="#">Полезное 3</a></li>
+								</ul>
+							</li>
+							<li><a href="{% url 'jobs' %}">Вакансии</a></li>
+							<li><a href="{% url 'partners' %}">Партнеры</a></li>
+							<li><a href="{% url 'contacts' %}">Контакты</a></li>
+						</ul>
+						<div class="header-mob">
+							<a href="{% url 'consultation' %}" class="second-btn">Оценка недвижимости</a>
+							<a href="#" class="main-btn">Добавить объявление</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- end header -->

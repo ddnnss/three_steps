@@ -1,0 +1,77 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+<!-- start page -->
+	<section class="page">
+		<div class="page-top" style="background-image: url({% static 'img/page-bg-8.jpg' %});">
+			<div class="page-top__wrap">
+				<h1 class="page-head" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">Вакансии</h1>
+			</div>
+		</div>
+		<div class="page-content page-content-big">
+			<div class="wrapper">
+				<div class="page-block" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+					<h3 class="page-title">Вакансии</h3>
+					<p>Стань частью команды профессионалов «3 ступени»!</p>
+                    <p>Наше агентство всегда радо приветствовать амбициозных и опытных специалистов, которые знают свое дело. На нашем сайте постоянно появляются новые вакансии, и мы будем рады рассмотреть кандидатуру каждого</p>
+                    <p>Чтобы откликнуться на вакансию, достаточно отправить свое резюме. Если ваша кандидатура подходит, то наши консультанты свяжутся с вами в кратчайшие сроки и пригласят вас на следующий этап.</p>
+				</div>
+				<div class="jobs {% if applyJob %}jobs-active{% endif %}">
+
+                    {% for job in jobs %}
+					<div  class="jobs-col {% if applyJob == job.id %}active{% endif %}" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+						<div class="jobs-wrap">
+							<span class="jobs-subtitle">{{ job.title }}</span>
+							<ul>
+                                {% if job.option1 %} <li>{{ job.option1 }}</li> {% endif %}
+                                {% if job.option2 %} <li>{{ job.option2 }}</li> {% endif %}
+                                {% if job.option3 %} <li>{{ job.option3 }}</li> {% endif %}
+                                {% if job.option4 %} <li>{{ job.option4 }}</li> {% endif %}
+
+							</ul>
+							<a href="#"  class="second-btn jobs-btn">Отправить резюме</a>
+							<div class="jobs-form">
+								<form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+									<div class="input-block">
+										<label for="m-1">Введите Имя</label>
+										<div class="input-wrap">
+											<input id="m-1" type="text" name="{{ form.name.name }}">
+										</div>
+									</div>
+									<div class="input-block">
+										<label for="m-2">Email</label>
+										<div class="input-wrap">
+											<input id="m-2" type="email" name="{{ form.email.name }}">
+										</div>
+									</div>
+									<div class="input-block">
+										<label for="m-3">Загрузите ваше резюме</label>
+										<div class="input-wrap">
+											<div class="input-file">
+												<input id="m-3" type="file" name="{{ form.resume.name }}">
+												<svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.5" d="M8 9H10.55V6H13.45V9H16L12 13L8 9ZM19.35 6.04C21.95 6.22 24 8.36 24 11C24 11.6566 23.8707 12.3068 23.6194 12.9134C23.3681 13.52 22.9998 14.0712 22.5355 14.5355C22.0712 14.9998 21.52 15.3681 20.9134 15.6194C20.3068 15.8707 19.6566 16 19 16H6C4.4087 16 2.88258 15.3679 1.75736 14.2426C0.632141 13.1174 0 11.5913 0 10C0 6.91 2.34 4.36 5.35 4.04C6.6 1.64 9.11 0 12 0C15.64 0 18.67 2.59 19.35 6.04ZM19 14C19.7956 14 20.5587 13.6839 21.1213 13.1213C21.6839 12.5587 22 11.7956 22 11C22 9.45 20.78 8.14 19.22 8.04L17.69 7.93L17.39 6.43C16.88 3.86 14.62 2 12 2C9.94 2 8.08 3.14 7.13 4.97L6.63 5.92L5.56 6.03C3.53 6.24 2 7.95 2 10C2 11.0609 2.42143 12.0783 3.17157 12.8284C3.92172 13.5786 4.93913 14 6 14H19Z" fill="#8B8B8B"/></svg>
+											</div>
+										</div>
+									</div>
+                                    <input type="hidden" name="v_id" value="{{ job.id }}">
+									<button type="submit" class="second-btn">Отправить резюме</button>
+								</form>
+							</div>
+						</div>
+						<div class="jobs-check">
+							<svg width="96" height="55" viewBox="0 0 96 55" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 32.0902L23.0813 55L28.9032 49.1803L5.86323 26.3115L0 32.0902ZM90.1368 0L46.4516 43.4016L29.2748 26.3115L23.3703 32.0902L46.4516 55L96 5.81967L90.1368 0ZM72.6297 5.81967L66.8077 0L40.5884 26.0246L46.4516 31.8033L72.6297 5.81967Z" fill="#008D36"/></svg>
+							<p>Ваше резюме было отправлено.<br>В скором времени с вами свяжутся.</p>
+						</div>
+					</div>
+                    {% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end page -->
+{% endblock %}
+
+{% block js %}
+{{ block.super }}
+{% endblock %}
