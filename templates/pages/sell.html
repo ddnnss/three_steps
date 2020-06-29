@@ -1,0 +1,258 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+<!-- start sell -->
+	<section class="sell">
+		<div class="wrapper">
+			<h1 class="page-title" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">Продать недвижимость</h1>
+			<form action="">
+				<div class="sell-content" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+					<span class="sell-subtitle">Объект</span>
+				</div>
+				<div class="sell-row">
+					<div class="sell-col" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+						<div class="sell-wrap">
+							<div class="input-block sell-wrap__small">
+								<div class="select">
+									<div class="select-main">
+										<div class="select-text">Квартира.</div>
+										<div class="input-icon">
+											<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
+										</div>
+									</div>
+									<div class="select-info">
+										<ul>
+											<li>Квартира</li>
+											<li>Квартира2</li>
+											<li>Квартира3</li>
+										</ul>
+									</div>
+									<input type="text" name="text" class="select-value">
+								</div>
+							</div>
+							<div class="input-block">
+								<div class="input-wrap">
+									<input id="location" type="text" name="text" value="" placeholder="Адрес объекта">
+								</div>
+							</div>
+							<div class="location-map">
+								<h3 class="location-title">Местоположение на карте</h3>
+								<div id="map" class="map"></div>
+							</div>
+							<div class="sell-wrap__row sell-wrap__row-big">
+								<div class="input-block sell-wrap__col">
+									<label for="q-0">Тип постройки</label>
+									<div class="input-wrap">
+										<input id="q-0" type="text" name="text">
+									</div>
+								</div>
+								<div class="input-block sell-wrap__col">
+									<label for="q-1">Количество комнат</label>
+									<div class="input-quantity">
+										<div class="quantity-col">
+											<input type="checkbox" name="quantity">
+											<span class="quantity-ico">1</span>
+										</div>
+										<div class="quantity-col">
+											<input type="checkbox" name="quantity">
+											<span class="quantity-ico">2</span>
+										</div>
+										<div class="quantity-col">
+											<input type="checkbox" name="quantity" checked>
+											<span class="quantity-ico">3</span>
+										</div>
+										<div class="quantity-col">
+											<input type="checkbox" name="quantity">
+											<span class="quantity-ico">4</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<label for="q-2">Этаж/Этажность</label>
+							<div class="sell-wrap__row">
+								<div class="input-block sell-wrap__col">
+									<div class="input-wrap">
+										<input id="q-2" type="text" name="text">
+									</div>
+								</div>
+								<div class="input-block sell-wrap__col">
+									<div class="input-wrap">
+										<input type="text" name="text">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="sell-col" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+						<div class="sell-wrap">
+							<div class="input-block">
+								<div class="input-wrap">
+									<input type="text" name="text" placeholder="Общая площадь (м2)">
+								</div>
+							</div>
+							<div class="input-block">
+								<div class="input-wrap">
+									<input type="text" name="text" placeholder="Площадь кухни (м2)">
+								</div>
+							</div>
+							<div class="input-block">
+								<div class="sell-col__top">
+									<label for="h-0">Описание</label>
+									<span>0/1000</span>
+								</div>
+								<div class="input-wrap">
+									<textarea name="text" id="h-0"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="sell-col sell-col__main" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+						<div class="sell-wrap">
+							<div class="sell-info">
+								<div class="download-input">
+									<input type="file">
+									<span class="second-btn">Загрузить фотографию</span>
+								</div>
+								<p>Можно загрузить до 30 фотографий. Максимальный вес каждой фотографии: 5 МБ. Форматы: JPG, JPEG, PNG.</p>
+							</div>
+						</div>
+					</div>
+					<div class="sell-col" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+						<div class="sell-wrap">
+							<label for="h-1">Цена</label>
+							<div class="sell-wrap__row sell-wrap__row-last">
+								<div class="input-block">
+									<div class="input-wrap">
+										<input id="h-1" type="text" name="text" placeholder="">
+									</div>
+								</div>
+								<div class="input-block sell-wrap__small">
+									<div class="select">
+										<div class="select-main">
+											<div class="select-text">Руб.</div>
+											<div class="input-icon">
+												<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
+											</div>
+										</div>
+										<div class="select-info">
+											<ul>
+												<li>Руб.</li>
+												<li>Руб.2</li>
+												<li>Руб.3</li>
+											</ul>
+										</div>
+										<input type="text" name="text" class="select-value">
+									</div>
+								</div>
+							</div>
+							<label for="h-2">Контакты</label>
+							<div class="input-block">
+								<div class="input-wrap">
+									<input id="h-2" type="name" name="name" placeholder="Ваше имя">
+								</div>
+							</div>
+							<div class="sell-wrap__row sell-wrap__row-cont">
+								<div class="input-block sell-wrap__col">
+									<div class="input-wrap">
+										<input type="email" name="email" placeholder="Email">
+									</div>
+								</div>
+								<div class="input-block sell-wrap__col">
+									<div class="input-wrap">
+										<input type="tel" name="tel" placeholder="Контактный телефон">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="sell-bottom">
+					<p>Заполняя данные поля, я подтверждаю, что ознакомился и согласен с <a href="#">Условиями...</a></p>
+					<a href="#" class="main-btn">Отправить</a>
+				</div>
+			</form>
+		</div>
+	</section>
+	<!-- end sell -->
+{% endblock %}
+
+{% block js %}
+{{ block.super }}
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=b066466e-a620-495c-932e-8b328fb49452" type="text/javascript"></script>
+
+    <script>
+
+       ymaps.ready(init);
+
+
+
+function init() {
+    var myPlacemark,
+        myMap = new ymaps.Map('map', {
+            center: [55.753994, 37.622093],
+            zoom: 9
+        }, {
+            searchControlProvider: 'yandex#search'
+        });
+
+
+    myMap.events.add('click', function (e) {
+        var coords = e.get('coords');
+
+        // Если метка уже создана – просто передвигаем ее.
+        if (myPlacemark) {
+            myPlacemark.geometry.setCoordinates(coords);
+        }
+        // Если нет – создаем.
+        else {
+            myPlacemark = createPlacemark(coords);
+            myMap.geoObjects.add(myPlacemark);
+            // Слушаем событие окончания перетаскивания на метке.
+            myPlacemark.events.add('dragend', function () {
+                getAddress(myPlacemark.geometry.getCoordinates());
+            });
+        }
+        getAddress(coords);
+    });
+
+    // Создание метки.
+    function createPlacemark(coords) {
+        return new ymaps.Placemark(coords, {
+            iconCaption: 'поиск...'
+        }, {
+            preset: 'islands#violetDotIconWithCaption',
+            draggable: true
+        });
+    }
+
+    // Определяем адрес по координатам (обратное геокодирование).
+    function getAddress(coords) {
+        myPlacemark.properties.set('iconCaption', 'поиск...');
+        ymaps.geocode(coords).then(function (res) {
+            var firstGeoObject = res.geoObjects.get(0);
+
+            myPlacemark.properties
+                .set({
+                    // Формируем строку с данными об объекте.
+                    iconCaption: [
+                        // Название населенного пункта или вышестоящее административно-территориальное образование.
+                        firstGeoObject.getLocalities().length ? firstGeoObject.getLocalities() : firstGeoObject.getAdministrativeAreas(),
+                        // Получаем путь до топонима, если метод вернул null, запрашиваем наименование здания.
+                        firstGeoObject.getThoroughfare() || firstGeoObject.getPremise()
+                    ].filter(Boolean).join(', '),
+                    // В качестве контента балуна задаем строку с адресом объекта.
+                    balloonContent: firstGeoObject.getAddressLine()
+
+                });
+             console.log(firstGeoObject.properties._data.text)
+            document.getElementById('location').value = firstGeoObject.properties._data.text
+        });
+    }
+}
+
+
+
+
+    </script>
+{% endblock %}

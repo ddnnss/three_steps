@@ -14,6 +14,7 @@ urlpatterns = [
     path('owners/', views.owners, name='owners'),
     path('partners/', views.partners, name='partners'),
     path('privatization/', views.privatization, name='privatization'),
+    path('sell/', views.sell, name='sell'),
 
     path('robots.txt', views.robots, name='robots'),
 

@@ -69,6 +69,9 @@ def contacts(request):
 def contact(request):
     return render(request, 'pages/contact.html', locals())
 
+def sell(request):
+    return render(request, 'pages/sell.html', locals())
+
 def robots(request):
     robotsTxt = f"User-agent: *\nDisallow: /admin/\nHost: https://ugscash.ru/\nSitemap: https://ugscash.ru/sitemap.xml"
     return HttpResponse(robotsTxt, content_type="text/plain")

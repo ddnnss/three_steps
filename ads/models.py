@@ -1,7 +1,6 @@
 from django.db import models
 from customuser.models import User
 from pytils.translit import slugify
-from easy_thumbnails.fields import ThumbnailerImageField
 from django.db.models.signals import post_save
 from django.core.files import File
 from io import BytesIO
