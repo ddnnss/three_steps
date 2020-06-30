@@ -2,7 +2,28 @@
 {% load static %}
 
 {% block content %}
+<!-- start page -->
+	<section class="page">
+		<div class="page-content">
+			<div class="wrapper">
+				<h1 class="page-title" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">{{ article.name }}</h1>
+                <div data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+                      {{ article.text | safe }}
+                </div>
 
+				<div class="page-share" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+					<span>Поделиться статьей</span>
+					<ul class="footer-social">
+						<li><a href="#"><img src="{% static 'img/google-ico-2.svg' %}" alt=""></a></li>
+						<li><a href="#"><img src="{% static 'img/inst-ico-2.svg' %}" alt=""></a></li>
+						<li><a href="#"><img src="{% static 'img/whatsApp-ico-2.svg' %}" alt=""></a></li>
+						<li><a href="#"><img src="{% static 'img/youtube-ico-2.svg' %}" alt=""></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end page -->
 {% endblock %}
 
 {% block js %}

@@ -2,7 +2,43 @@
 {% load static %}
 
 {% block content %}
-
+<!-- start articles -->
+	<section class="articles">
+		<div class="wrapper">
+			<h1 class="page-title" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">Тематические статьи</h1>
+			<div class="articles-row">
+				<div class="grid">
+                    {% for article in all_articles %}
+					<div class="grid-item persent-size articles-post" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+						<div class="articles-wrap">
+							<a href="{% url 'article' article.name_slug %}">
+								<img src="{{ article.image.url }}" alt="">
+								<h3 class="articles-title">{{ article.name }}</h3>
+							</a>
+						</div>
+					</div>
+                    {%  endfor %}
+                </div>
+			</div>
+			<div class="pagination pagination-mob">
+				<a href="#" class="pagination-prev">
+					<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.59108 12.0046L18.5482 2.67425C18.7732 2.44381 18.7679 2.0633 18.5375 1.8275L16.9357 0.18758C16.7054 -0.0482256 16.3304 -0.0535849 16.1054 0.176861L5.16608 11.5705C5.04822 11.6885 4.99465 11.8492 5.00537 12.0046C5.00001 12.1654 5.05358 12.3208 5.16608 12.4387L16.1054 23.8378C16.3304 24.0682 16.7054 24.0629 16.9357 23.8271L18.5375 22.1871C18.7679 21.9513 18.7732 21.5708 18.5482 21.3404L9.59108 12.0046Z" fill="#001B36"/><mask id="inev" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="0" width="14" height="25"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.59108 12.0046L18.5482 2.67425C18.7732 2.44381 18.7679 2.0633 18.5375 1.8275L16.9357 0.18758C16.7054 -0.0482256 16.3304 -0.0535849 16.1054 0.176861L5.16608 11.5705C5.04822 11.6885 4.99465 11.8492 5.00537 12.0046C5.00001 12.1654 5.05358 12.3208 5.16608 12.4387L16.1054 23.8378C16.3304 24.0682 16.7054 24.0629 16.9357 23.8271L18.5375 22.1871C18.7679 21.9513 18.7732 21.5708 18.5482 21.3404L9.59108 12.0046Z" fill="white"/></mask><g mask="url(#inev)"><rect width="24" height="24" fill="#8B8B8B"/></g></svg>
+				</a>
+				<ul class="pagination-list">
+					<li class="active">1</li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><span>...</span></li>
+					<li><a href="#">215</a></li>
+				</ul>
+				<a href="#" class="pagination-next">
+					<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.1232 12.0046L5.16607 2.67425C4.94107 2.44381 4.94642 2.0633 5.17678 1.8275L6.77857 0.18758C7.00892 -0.0482256 7.38392 -0.0535849 7.60892 0.176861L18.5482 11.5759C18.6661 11.6938 18.7196 11.8546 18.7089 12.01C18.7143 12.1708 18.6607 12.3262 18.5482 12.4441L7.60892 23.8378C7.38392 24.0682 7.00892 24.0629 6.77857 23.8271L5.17678 22.1871C4.94642 21.9513 4.94107 21.5708 5.16607 21.3404L14.1232 12.0046Z" fill="#001B36"/><mask id="jnew" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="0" width="14" height="25"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.1232 12.0046L5.16607 2.67425C4.94107 2.44381 4.94642 2.0633 5.17678 1.8275L6.77857 0.18758C7.00892 -0.0482256 7.38392 -0.0535849 7.60892 0.176861L18.5482 11.5759C18.6661 11.6938 18.7196 11.8546 18.7089 12.01C18.7143 12.1708 18.6607 12.3262 18.5482 12.4441L7.60892 23.8378C7.38392 24.0682 7.00892 24.0629 6.77857 23.8271L5.17678 22.1871C4.94642 21.9513 4.94107 21.5708 5.16607 21.3404L14.1232 12.0046Z" fill="white"/></mask><g mask="url(#jnew)"><rect width="24" height="24" fill="#8B8B8B"/></g></svg>
+				</a>
+			</div>
+		</div>
+	</section>
+	<!-- end articles -->
 {% endblock %}
 
 {% block js %}

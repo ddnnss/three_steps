@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from ads.models import *
 from .models import *
 from .forms import *
-
+from ads.forms import  *
 def index(request):
     pageTitle = 'Недвижимость в Королеве | Агентство недвижимости Королев - 3 Ступени'
     pageDescription = ''
@@ -70,7 +70,26 @@ def contact(request):
     return render(request, 'pages/contact.html', locals())
 
 def sell(request):
+    if request.POST:
+        print(request.POST)
+        form = SellForm(request.POST)
+        new_ads = None
+        if form.is_valid():
+            new_ads = form.save()
+            if new_ads:
+                for f in request.FILES.getlist('images'):
+                    AdsImage.objects.create(ads_id=new_ads.id, image=f).save()
+        else:
+            print(form.errors)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    sellForm = SellForm()
+    categories = Category.objects.all()
     return render(request, 'pages/sell.html', locals())
+
+def estimate(request):
+    sellForm = SellForm()
+    categories = Category.objects.all()
+    return render(request, 'pages/estimate.html', locals())
 
 def robots(request):
     robotsTxt = f"User-agent: *\nDisallow: /admin/\nHost: https://ugscash.ru/\nSitemap: https://ugscash.ru/sitemap.xml"

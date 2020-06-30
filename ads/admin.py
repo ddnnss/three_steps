@@ -4,12 +4,14 @@ from .models import  *
 
 class AdsImageInline(admin.TabularInline):
     model = AdsImage
+    readonly_fields = ('image_tag',)
     extra = 0
 
 
 class AdsAdmin(admin.ModelAdmin):
     inlines = [AdsImageInline]
     list_display = [
+        'image_tag',
         "number",
         "name",
         "created_at",
@@ -26,6 +28,7 @@ class AdsAdmin(admin.ModelAdmin):
         "is_hot",
         "created_at",
         "updated_at",
+        'ads_type'
     )
 
 

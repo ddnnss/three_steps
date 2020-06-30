@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'customuser',
     'ckeditor',
+    'ckeditor_uploader',
     'ads',
     'article',
     'pages'

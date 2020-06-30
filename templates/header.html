@@ -49,7 +49,7 @@
 				</div>
 				<div class="header-btns">
 					<a href="{% url 'sell' %}" class="main-btn">Добавить объявление</a>
-					<a href="{% url 'consultation' %}" class="second-btn">Оценка недвижимости</a>
+					<a href="{% url 'estimate' %}" class="second-btn">Оценка недвижимости</a>
 				</div>
 				<div class="header-bar">
 					<span></span>
@@ -101,9 +101,7 @@
 									<svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.66406 0.00390625L7.48438 0.824219L3.98438 4.32422L0.484375 0.824219L1.30469 0.00390625L3.98438 2.68359L6.66406 0.00390625Z" fill="white"/></svg>
 								</a>
 								<ul class="drop-list">
-									<li><a href="#">Полезное 1</a></li>
-									<li><a href="#">Полезное 2</a></li>
-									<li><a href="#">Полезное 3</a></li>
+									<li><a href="{% url 'articles' %}">Статьи</a></li>
 								</ul>
 							</li>
 							<li><a href="{% url 'jobs' %}">Вакансии</a></li>
@@ -111,8 +109,8 @@
 							<li><a href="{% url 'contacts' %}">Контакты</a></li>
 						</ul>
 						<div class="header-mob">
-							<a href="{% url 'consultation' %}" class="second-btn">Оценка недвижимости</a>
-							<a href="#" class="main-btn">Добавить объявление</a>
+							<a href="{% url 'estimate' %}" class="second-btn">Оценка недвижимости</a>
+							<a href="{% url 'sell' %}" class="main-btn">Добавить объявление</a>
 						</div>
 					</div>
 				</div>

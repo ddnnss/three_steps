@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.safestring import mark_safe
+
 from customuser.models import User
 from pytils.translit import slugify
 from django.db.models.signals import post_save
@@ -6,6 +8,48 @@ from django.core.files import File
 from io import BytesIO
 from pytils.translit import slugify
 from PIL import Image
+
+
+
+class Category(models.Model):
+    name = models.CharField('Название', max_length=255, blank=False, null=True)
+    name_slug = models.CharField(blank=True, max_length=255, null=True, editable=False)
+
+
+    def save(self, *args, **kwargs):
+        #создание имени для ЧПУ ссылки
+        self.name_slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return f'Тип нежвижимости : {self.name} '
+
+    class Meta:
+        verbose_name = "Тип нежвижимости"
+        verbose_name_plural = "Типы нежвижимости"
+
+class SubCategory(models.Model):
+    category = models.ForeignKey(Category, blank=False,null=True,on_delete=models.CASCADE,verbose_name='Относится к')
+    name = models.CharField('Название', max_length=255, blank=False, null=True)
+    name_slug = models.CharField(blank=True, max_length=255, null=True, editable=False)
+    show_square_kitchen = models.BooleanField('Показывать площадь кухни в форме на главной?', default=True)
+    show_building_type = models.BooleanField('Показывать новострой/вторичка главной?', default=True)
+    show_square_land = models.BooleanField('Показывать площадь земли в форме на главной?', default=False)
+    show_floors = models.BooleanField('Показывать этажи/этажность в форме на главной?', default=True)
+    show_rooms = models.BooleanField('Показывать кол-во комнат в форме на главной?', default=True)
+    show_house_type = models.BooleanField('Показывать тип постройки в форме на главной?', default=True)
+
+    def save(self, *args, **kwargs):
+        #создание имени для ЧПУ ссылки
+        self.name_slug = slugify(self.name)
+        super(SubCategory, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return f'Под тип нежвижимости : {self.name} '
+
+    class Meta:
+        verbose_name = "Под тип нежвижимости"
+        verbose_name_plural = "Под типы нежвижимости"
 
 class Metro(models.Model):
     name = models.CharField('Метро', max_length=255, blank=False, null=True)
@@ -23,23 +67,8 @@ class Metro(models.Model):
         verbose_name = "Метро"
         verbose_name_plural = "Метро"
 
-class Category(models.Model):
-    name = models.CharField('Категория', max_length=255, blank=False, null=True)
-    name_slug = models.CharField(blank=True, max_length=255, null=True, editable=False)
-
-    def save(self, *args, **kwargs):
-        #создание имени для ЧПУ ссылки
-        self.name_slug = slugify(self.name)
-        super(Category, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return f'Категория : {self.name} '
-
-    class Meta:
-        verbose_name = "Категория"
-        verbose_name_plural = "Категории"
-
 class Town(models.Model):
+    metros = models.ManyToManyField(Metro,blank=True,null=True,verbose_name='Возможные метро')
     name = models.CharField('Город', max_length=255, blank=False, null=True)
     name_slug = models.CharField(blank=True, max_length=255, null=True, editable=False)
 
@@ -54,6 +83,8 @@ class Town(models.Model):
     class Meta:
         verbose_name = "Город"
         verbose_name_plural = "Города"
+
+
 
 class Ads(models.Model):
     TO_RENT = 'TR'
@@ -141,14 +172,15 @@ class Ads(models.Model):
     created = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Добавил')
     number = models.CharField('Номер объекта', max_length=255, blank=True, null=True, editable=False)
     name = models.CharField('Заголовок', blank=False, max_length=255, null=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=False, null=True,verbose_name='Категория')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True,verbose_name='Тип недвижимости')
+    subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, blank=False, null=True,verbose_name='Под тип недвижимости')
     metro = models.ForeignKey(Metro, on_delete=models.CASCADE, blank=True, null=True,verbose_name='Метро')
     is_new_building = models.BooleanField('Новострой ?', default=False)
     is_checked = models.BooleanField('Проверено ?', default=False)
     is_publish = models.BooleanField('Опубликован ?', default=False)
     is_hot = models.BooleanField('Горячие предложения ?', default=False)
     is_in_ya_feed = models.BooleanField('Выгружать в Яндекс фид ?', default=False)
-    action_type = models.CharField('Тип', max_length=2, choices=ACTION_TYPE_CHOICES, default=TO_RENT)
+    action_type = models.CharField('Тип сделки', max_length=20, choices=ACTION_TYPE_CHOICES, default=TO_RENT)
     street = models.CharField('Улица', max_length=255, blank=False, null=True)
     street_number = models.CharField('Номер дома', max_length=255, blank=False, null=True)
     room_number = models.CharField('Номер квартиры', max_length=255, blank=True, null=True)
@@ -156,23 +188,24 @@ class Ads(models.Model):
     town = models.ForeignKey(Town, on_delete=models.CASCADE, blank=False, null=True, verbose_name='Город')
     floor = models.IntegerField('Этаж', blank=True, null=True)
     floor_total = models.IntegerField('Этажность', blank=True, null=True)
-    house_type = models.CharField('Тип', max_length=2, choices=HOUSE_TYPE_CHOICES, blank=True, null=True)
-    rooms = models.CharField('Комнат', max_length=2, choices=ROOMS_NUMBER_CHOICES, blank=True, null=True)
-    balkon_type = models.CharField('Балкон', max_length=2, choices=BALKON_TYPE_CHOICES,blank=True, null=True)
+    house_type = models.CharField('Тип постройки', max_length=20, choices=HOUSE_TYPE_CHOICES, blank=True, null=True)
+    rooms = models.CharField('Комнат', max_length=20, choices=ROOMS_NUMBER_CHOICES, blank=True, null=True)
+    balkon_type = models.CharField('Балкон', max_length=20, choices=BALKON_TYPE_CHOICES,blank=True, null=True)
     square_total = models.IntegerField('Площадь общая', blank=True, null=True)
     square_living = models.IntegerField('Площадь жилая', blank=True, null=True)
     square_kitchen = models.IntegerField('Площадь кухни', blank=True, null=True)
     square_room = models.IntegerField('Площадь комнаты', blank=True, null=True)
     square_land = models.IntegerField('Площадь земли', blank=True, null=True)
-    land_type = models.CharField('Категория земель', max_length=2, choices=LAND_TYPE_CHOICES, blank=True, null=True)
-    order_type = models.CharField('Тип сделки', max_length=2, choices=ORDER_TYPE_CHOICES, blank=True, null=True)
-    own_years = models.CharField('Лет в собственности', max_length=2, choices=OWN_YEARS_CHOICES, blank=True, null=True)
+    land_type = models.CharField('Категория земель', max_length=20, choices=LAND_TYPE_CHOICES, blank=True, null=True)
+    order_type = models.CharField('Тип сделки', max_length=20, choices=ORDER_TYPE_CHOICES, blank=True, null=True)
+    own_years = models.CharField('Лет в собственности', max_length=20, choices=OWN_YEARS_CHOICES, blank=True, null=True)
     contact_name = models.CharField('Контактное лицо (собственник)', blank=False, max_length=255, null=True)
     contact_phone = models.CharField('Телефон (собственник)', blank=False, max_length=255, null=True)
     contact_email = models.CharField('Email (собственник)', blank=True, max_length=255, null=True)
     description = models.TextField('Описание', blank=True, null=True)
-    currency_type = models.CharField('Тип', max_length=2, choices=CURRENCY_CHOICES, default=RUB)
+    currency_type = models.CharField('Валюта', max_length=20, choices=CURRENCY_CHOICES, default=RUB)
     price = models.IntegerField('Цена', blank=False, null=True)
+    ads_type = models.CharField(max_length=10, blank=True, null=True)
     created_at = models.DateTimeField('Добавлено', auto_now_add=True)
     updated_at = models.DateTimeField('Изменено', auto_now=True)
 
@@ -181,6 +214,14 @@ class Ads(models.Model):
     # def save(self, *args, **kwargs):
     #     self.number = f'01-{10000 + self.id}'
     #     super(Ads, self).save(*args, **kwargs)
+    def image_tag(self):
+        # used in the admin site model as a "thumbnail"
+        if self.adsimage_set.exists():
+            return mark_safe('<img src="{}" width="100" height="100" />'.format(self.adsimage_set.first().image_thumb.url))
+        else:
+            return mark_safe('<span>Нет загружениых фото</span>')
+
+    image_tag.short_description = 'Фото'
 
     def __str__(self):
         return f'Номер объекта: {self.number} | Категория : {self.category.name} '
@@ -235,6 +276,13 @@ class AdsImage(models.Model):
             self.image_thumb.save(f'{self.ads.id}-{self.ads.number}-thumb.jpg', File(blob_thumb), save=False)
             self.image_main.save(f'{self.ads.id}-{self.ads.number}-main.jpg', File(blob_main), save=False)
         super(AdsImage, self).save(*args, **kwargs)
+
+    def image_tag(self):
+        # used in the admin site model as a "thumbnail"
+        if self.image_thumb:
+            return mark_safe('<img src="{}" width="100" height="100" />'.format(self.image_thumb.url))
+        else:
+            return mark_safe('<span>Нет загружениых фото</span>')
 
     def __str__(self):
         return f"Фото для объявления №{self.ads.number} "

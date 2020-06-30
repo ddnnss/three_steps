@@ -4,34 +4,32 @@
 		<div class="wrapper">
 			<div class="footer-top">
 				<ul class="footer-list">
-					<li><a href="#">Приватизация</a></li>
-					<li><a href="#">Бесплатная консультация</a></li>
+					<li><a href="{% url 'privatization' %}">Приватизация</a></li>
+					<li><a href="{% url 'consultation' %}">Бесплатная консультация</a></li>
 					<li class="drop">
 						<a href="#" class="drop-text">
 							Кредит
 							<svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.66406 0.00390625L7.48438 0.824219L3.98438 4.32422L0.484375 0.824219L1.30469 0.00390625L3.98438 2.68359L6.66406 0.00390625Z" fill="white"/></svg>
 						</a>
 						<ul class="drop-list">
-							<li><a href="#">Кредит 1</a></li>
-							<li><a href="#">Кредит 2</a></li>
-							<li><a href="#">Кредит 3</a></li>
+							<li><a href="{% url 'credit_help' %}">Помощь с кредитованием</a></li>
+									<li><a href="{% url 'credit_calculator' %}">Кредитный калькулятор</a></li>
 						</ul>
 					</li>
-					<li><a href="#">Собственникам</a></li>
+					<li><a href="{% url 'owners' %}">Собственникам</a></li>
 					<li class="drop">
 						<a href="#" class="drop-text">
 							Полезное
 							<svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.66406 0.00390625L7.48438 0.824219L3.98438 4.32422L0.484375 0.824219L1.30469 0.00390625L3.98438 2.68359L6.66406 0.00390625Z" fill="white"/></svg>
 						</a>
 						<ul class="drop-list">
-							<li><a href="#">Полезное 1</a></li>
-							<li><a href="#">Полезное 2</a></li>
-							<li><a href="#">Полезное 3</a></li>
+							<li><a href="{% url 'articles' %}">Статьи</a></li>
+
 						</ul>
 					</li>
-					<li><a href="#">Вакансии</a></li>
-					<li><a href="#">Партнеры</a></li>
-					<li><a href="#">Контакты</a></li>
+					<li><a href="{% url 'jobs' %}">Вакансии</a></li>
+					<li><a href="{% url 'partners' %}">Партнеры</a></li>
+					<li><a href="{% url 'contacts' %}">Контакты</a></li>
 				</ul>
 				<ul class="footer-social">
 					<li><a href="#"><img src="{% static 'img/google-ico.svg' %}" alt=""></a></li>

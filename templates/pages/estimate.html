@@ -5,7 +5,7 @@
 <!-- start sell -->
 	<section class="sell">
 		<div class="wrapper">
-			<h1 class="page-title" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">Продать недвижимость</h1>
+			<h1 class="page-title" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">ОЦЕНКА СТОИМОСТИ</h1>
 			<form action="{% url 'sell' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
 				<div class="sell-content" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
 					<span class="sell-subtitle">Объект</span>
@@ -187,8 +187,8 @@
 						</div>
 					</div>
 				</div>
-                <input type="hidden" name="{{ sellForm.ads_type.name }}" value="sell">
-                <input type="hidden" name="{{ sellForm.name.name }}" value="Обьявление о продаже с сайта">
+                <input type="hidden" name="{{ sellForm.ads_type.name }}" value="estimate">
+                <input type="hidden" name="{{ sellForm.name.name }}" value="Запрос на оценку с сайта">
                 <input type="hidden" name="{{ sellForm.action_type.name }}" value="SL">
 				<div class="sell-bottom">
 					<p>Заполняя данные поля, я подтверждаю, что ознакомился и согласен с <a href="#">Условиями...</a></p>

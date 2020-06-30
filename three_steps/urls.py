@@ -22,6 +22,7 @@ urlpatterns = [
     path('user/', include('customuser.urls')),
     path('index.html', RedirectView.as_view(url='/', permanent=False), name='index1'),
     path('index.php', RedirectView.as_view(url='/', permanent=False), name='index2'),
+    path('articles/', include('article.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     # path('sitemap.xml', sitemap, {'sitemaps':sitemaps}),
     path('', include('pages.urls')),
