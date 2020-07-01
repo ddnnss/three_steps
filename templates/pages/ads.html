@@ -1,0 +1,132 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+<!-- start post -->
+	<section class="post" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+		<div class="wrapper">
+			<div class="post-top">
+				<div class="post-images">
+					<div class="post-slider">
+                        {% for img in ads.get_images %}
+						<div class="post-slide">
+							<img src="{{ img.image_main.url }}" alt="">
+						</div>
+                        {% endfor %}
+
+					</div>
+					<div class="post-navigation">
+
+						{% for img in ads.get_images %}
+						<div class="post-navigation__slide">
+							<img src="{{ img.image_thumb.url }}" alt="">
+						</div>
+                        {% endfor %}
+					</div>
+				</div>
+				<div class="post-info">
+					<div class="post-main">
+						<div class="post-row">
+							<span class="post-date">Дата публикации: <b>{{ ads.created_at | date }}</b></span>
+							<span class="post-num">Номер объекта: <b>{{ ads.number }}</b></span>
+						</div>
+						<span class="post-price">{{ ads.price }} {{ ads.get_currency }}</span>
+					</div>
+					<ul class="post-list">
+						<li><b>Тип операции:</b> <span>{{ ads.get_order_type_display }}</span></li>
+						<li><b>Ваш менеджер:</b> <span>{{ ads.created.first_name }}</span></li>
+						<li><b>Телефон:</b> <a href="#">{{ ads.created.phone }}</a></li>
+						<li><b>Email:</b> <a href="#">{{ ads.created.email }}</a></li>
+					</ul>
+					<div class="post-btns">
+						<a href="#modal-agreement" class="second-btn button-modal">Хочу посмотреть</a>
+						<a href="#" class="main-btn">Заявка на кредит</a>
+					</div>
+				</div>
+			</div>
+			<div class="post-bottom">
+				<div class="post-col post-col__1">
+					<div class="post-col__wrap">
+						<ul>
+							<li><b>Город</b>{{ ads.town.name }}</li>
+							<li><b>Улица</b>{{ ads.street }}</li>
+							<li><b>Номер дома</b>{{ ads.street_number }}</li>
+							<li><b>Этаж/Этажность</b>{{ ads.floor }}/{{ ads.floor_total }}</li>
+							<li><b>Кол-во комнат</b>{{ ads.get_rooms_display }}</li>
+							<li><b>Площадь</b>{{ ads.square_total }}</li>
+							<li><b>Жил. площадь</b>{{ ads.square_living }}</li>
+							<li><b>Площадь кухни</b>{{ ads.square_kitchen }}</li>
+							<li><b>Тип дома</b>{{ ads.get_house_type_display }}</li>
+						</ul>
+					</div>
+				</div>
+				<div class="post-col">
+					<div class="post-col__wrap">
+						<h3 class="post-title">Описание</h3>
+                        {{ ads.get_full_description | safe }}</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end post -->
+	<!-- start location -->
+	<section class="location" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+		<div class="wrapper">
+			<div class="location-map">
+				<h3 class="location-title">Местоположение на карте</h3>
+				<div id="map" class="map"></div>
+			</div>
+		</div>
+	</section>
+	<!-- end location -->
+{% endblock %}
+
+{% block js %}
+{{ block.super }}
+     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=b066466e-a620-495c-932e-8b328fb49452" type="text/javascript"></script>
+    <script>
+    ymaps.ready(init);
+
+function init() {
+    var myMap = new ymaps.Map('map', {
+        center: [55.753994, 37.622093],
+        zoom: 9
+    });
+
+    // Поиск координат центра Нижнего Новгорода.
+    ymaps.geocode('{{ ads.town.name }} {{ ads.street }} {{ ads.street_number }}', {
+        /**
+         * Опции запроса
+         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/geocode.xml
+         */
+        // Сортировка результатов от центра окна карты.
+        // boundedBy: myMap.getBounds(),
+        // strictBounds: true,
+        // Вместе с опцией boundedBy будет искать строго внутри области, указанной в boundedBy.
+        // Если нужен только один результат, экономим трафик пользователей.
+        results: 1
+    }).then(function (res) {
+            // Выбираем первый результат геокодирования.
+            var firstGeoObject = res.geoObjects.get(0),
+                // Координаты геообъекта.
+                coords = firstGeoObject.geometry.getCoordinates(),
+                // Область видимости геообъекта.
+                bounds = firstGeoObject.properties.get('boundedBy');
+
+            firstGeoObject.options.set('preset', 'islands#darkBlueDotIconWithCaption');
+            // Получаем строку с адресом и выводим в иконке геообъекта.
+            firstGeoObject.properties.set('iconCaption', firstGeoObject.getAddressLine());
+
+            // Добавляем первый найденный геообъект на карту.
+            myMap.geoObjects.add(firstGeoObject);
+            // Масштабируем карту на область видимости геообъекта.
+            myMap.setBounds(bounds, {
+                // Проверяем наличие тайлов на данном масштабе.
+                checkZoomRange: true
+            });
+
+
+        });
+}
+    </script>
+{% endblock %}

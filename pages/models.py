@@ -61,3 +61,6 @@ class Consultation(models.Model):
     class Meta:
         verbose_name = "Заявка на консультацию"
         verbose_name_plural = "Заявки на консультацию"
+
+class Callback(models.Model):
+    pass

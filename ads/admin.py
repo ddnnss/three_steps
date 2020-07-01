@@ -7,6 +7,14 @@ class AdsImageInline(admin.TabularInline):
     readonly_fields = ('image_tag',)
     extra = 0
 
+class SubcatInline(admin.TabularInline):
+    model = SubCategory
+    extra = 0
+
+
+class CatAdmin(admin.ModelAdmin):
+    inlines = [SubcatInline]
+    extra = 0
 
 class AdsAdmin(admin.ModelAdmin):
     inlines = [AdsImageInline]
@@ -19,16 +27,18 @@ class AdsAdmin(admin.ModelAdmin):
     ]
     search_fields = ("name", "number")
     list_filter = (
+        "is_checked",
+        "is_publish",
+        'ads_type',
         "category",
+        "subcategory",
         "town",
         "action_type",
         "is_new_building",
-        "is_checked",
-        "is_publish",
         "is_hot",
         "created_at",
         "updated_at",
-        'ads_type'
+
     )
 
 
@@ -36,7 +46,8 @@ class AdsAdmin(admin.ModelAdmin):
         model = Ads
 
 admin.site.register(Metro)
-admin.site.register(Category)
+admin.site.register(Category,CatAdmin)
+admin.site.register(SubCategory)
 admin.site.register(Town)
 admin.site.register(Ads,AdsAdmin)
 

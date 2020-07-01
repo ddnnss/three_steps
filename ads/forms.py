@@ -6,7 +6,7 @@ from .models import *
 class SellForm(ModelForm):
     class Meta:
         model = Ads
-        fields = ('category',
+        fields = ('subcategory',
                   'name',
                   'street',
                   'house_type',

@@ -2,347 +2,584 @@
 {% load static %}
 
 {% block content %}
+    <div id="app">
+        <!-- start main -->
+        <section class="main">
+            <div class="main-bg" style="background-image: url({% static 'img/main-bg.jpg' %});" data-aos="fade" data-aos-duration="500" data-aos-once="true"></div>
+            <div class="main-bg main-bg-mob" style="background-image: url({% static 'img/main-bg-mob.jpg' %});" data-aos="fade" data-aos-duration="500" data-aos-once="true"></div>
+            <div class="wrapper">
+                <div class="main-wrap" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+                    <h1 class="main-title">Поиск недвижимости</h1>
 
-	<!-- start main -->
-	<section class="main">
-		<div class="main-bg" style="background-image: url({% static 'img/main-bg.jpg' %});" data-aos="fade" data-aos-duration="500" data-aos-once="true"></div>
-		<div class="main-bg main-bg-mob" style="background-image: url({% static 'img/main-bg-mob.jpg' %});" data-aos="fade" data-aos-duration="500" data-aos-once="true"></div>
-		<div class="wrapper">
-			<div class="main-wrap" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
-				<h1 class="main-title">Поиск недвижимости</h1>
-				<form action="">
-					<div class="main-row">
-						<div class="main-col">
-							<div class="input-block">
-								<div class="select">
-									<div class="select-main">
-										<div class="select-text">Снять</div>
-										<div class="input-icon">
-											<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
-										</div>
-									</div>
-									<div class="select-info">
-										<ul>
-											<li>Снять</li>
-											<li>Снять2</li>
-											<li>Снять3</li>
-										</ul>
-									</div>
-									<input type="text" name="text" class="select-value">
-								</div>
-							</div>
-						</div><!-- col(1) -->
-						<div class="main-col">
-							<div class="input-block">
-								<div class="select">
-									<div class="select-main">
-										<div class="select-text">Жилую недвижимость</div>
-										<div class="input-icon">
-											<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
-										</div>
-									</div>
-									<div class="select-info">
-										<ul>
-											<li>Жилую недвижимость</li>
-											<li>Жилую недвижимость2</li>
-											<li>Жилую недвижимость3</li>
-										</ul>
-									</div>
-									<input type="text" name="text" class="select-value">
-								</div>
-							</div>
-						</div><!-- col(2) -->
-						<div class="main-col">
-							<div class="input-block">
-								<div class="select">
-									<div class="select-main">
-										<div class="select-text">Квартиру</div>
-										<div class="input-icon">
-											<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
-										</div>
-									</div>
-									<div class="select-info">
-										<ul>
-											<li>Квартиру</li>
-											<li>Квартиру2</li>
-											<li>Квартиру3</li>
-										</ul>
-									</div>
-									<input type="text" name="text" class="select-value">
-								</div>
-							</div>
-						</div><!-- col(3) -->
-						<div class="main-col">
-							<div class="input-block">
-								<div class="select">
-									<div class="select-main">
-										<div class="select-text">Город</div>
-										<div class="input-icon">
-											<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
-										</div>
-									</div>
-									<div class="select-info">
-										<ul>
-											<li>Город</li>
-											<li>Город2</li>
-											<li>Город3</li>
-										</ul>
-									</div>
-									<input type="text" name="text" class="select-value">
-								</div>
-							</div>
-						</div><!-- col(4) -->
-						<div class="main-col">
-							<div class="input-block">
-								<div class="select">
-									<div class="select-main">
-										<div class="select-text">Метро любое</div>
-										<div class="input-icon">
-											<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
-										</div>
-									</div>
-									<div class="select-info">
-										<ul>
-											<li>Метро любое</li>
-											<li>Метро любое2</li>
-											<li>Метро любое3</li>
-										</ul>
-									</div>
-									<input type="text" name="text" class="select-value">
-								</div>
-							</div>
-						</div><!-- col(5) -->
-						<div class="main-col">
-							<div class="input-block">
-								<div class="input-wrap">
-									<input type="text" name="text" placeholder="Цена от">
-								</div>
-							</div>
-						</div><!-- col(6) -->
-						<div class="main-col">
-							<div class="input-block">
-								<div class="input-wrap">
-									<input type="text" name="text" placeholder="Цена до">
-								</div>
-							</div>
-						</div><!-- col(7) -->
-						<div class="main-col">
-							<div class="input-block">
-								<div class="select">
-									<div class="select-main">
-										<div class="select-text">Руб.</div>
-										<div class="input-icon">
-											<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
-										</div>
-									</div>
-									<div class="select-info">
-										<ul>
-											<li>Руб.</li>
-											<li>Руб.2</li>
-											<li>Руб.3</li>
-										</ul>
-									</div>
-									<input type="text" name="text" class="select-value">
-								</div>
-							</div>
-						</div><!-- col(8) -->
-					</div>
-					<div class="main-block">
-						<div class="main-block__row">
-							<div class="main-col">
-								<div class="input-block">
-									<div class="select">
-										<div class="select-main">
-											<div class="select-text">Новостройки</div>
-											<div class="input-icon">
-												<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
-											</div>
-										</div>
-										<div class="select-info">
-											<ul>
-												<li>Новостройки.</li>
-												<li>Новостройки.2</li>
-												<li>Новостройки.3</li>
-											</ul>
-										</div>
-										<input type="text" name="text" class="select-value">
-									</div>
-								</div>
-							</div><!-- col(1) -->
-							<div class="main-col">
-								<div class="input-quantity">
-									<div class="quantity-col">
-										<input type="radio" name="quantity">
-										<span class="quantity-ico">1</span>
-									</div>
-									<div class="quantity-col">
-										<input type="radio" name="quantity">
-										<span class="quantity-ico">2</span>
-									</div>
-									<div class="quantity-col">
-										<input type="radio" name="quantity">
-										<span class="quantity-ico">3</span>
-									</div>
-									<div class="quantity-col">
-										<input type="radio" name="quantity">
-										<span class="quantity-ico">4</span>
-									</div>
-								</div>
-							</div><!-- col(2) -->
-							<div class="main-col main-col__row">
-								<div class="input-block">
-									<div class="input-wrap">
-										<input type="number" name="from" placeholder="От">
-									</div>
-								</div>
-								<div class="input-block">
-									<div class="input-wrap">
-										<input type="number" name="to" placeholder="До">
-									</div>
-								</div>
-							</div><!-- col(3) -->
-							<div class="main-col main-col__row">
-								<div class="input-block">
-									<div class="input-wrap">
-										<input type="number" name="from" placeholder="От">
-									</div>
-								</div>
-								<div class="input-block">
-									<div class="input-wrap">
-										<input type="number" name="to" placeholder="До">
-									</div>
-								</div>
-							</div><!-- col(4) -->
-						</div>
-					</div>
-					<div class="main-bottom">
-						<a href="#" class="main-details">
-							Еще детали
-							<span class="details-arrow">
+                    <form @submit.prevent="searchIt">
+                        <div class="main-row">
+                            <div class="main-col">
+                                <div class="input-block">
+                                    <div class="select">
+                                        <div class="select-main">
+                                            <div class="select-text">Снять</div>
+                                            <div class="input-icon">
+                                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
+                                            </div>
+                                        </div>
+                                        <div class="select-info">
+                                            <ul>
+                                                <li @click="action_type='RT'">Снять</li>
+                                                <li @click="action_type='BY'">Купить</li>
+
+                                            </ul>
+                                        </div>
+                                        <input type="text" name="action_type" class="select-value1" v-model="action_type">
+                                    </div>
+                                </div>
+                            </div><!-- col(1) -->
+                            <div class="main-col">
+                                <div class="input-block">
+                                    <div class="select">
+                                        <div class="select-main">
+                                            <div class="select-text">{{ allCategories.first.name }}</div>
+                                            <div class="input-icon">
+                                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
+                                            </div>
+                                        </div>
+                                        <div class="select-info">
+                                            <ul>
+                                                {% for cat in allCategories %}
+                                                    <li data-slug="{{ cat.name_slug }}" @click='changeCat'>{{ cat.name }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <input type="text" name="category" class="select-value1" v-model="cat">
+                                    </div>
+                                </div>
+                            </div><!-- col(2) -->
+                            <div class="main-col">
+                                <div class="input-block">
+                                    <div class="select">
+                                        <div class="select-main">
+                                            <div id="subcat_name" class="select-text-alt">[[subcat]]</div>
+                                            <div class="input-icon">
+                                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
+                                            </div>
+                                        </div>
+                                        <div class="select-info">
+                                            <ul>
+
+                                                <li v-for=" subcat in subcats" @click="getSubcatInfo(subcat.id,subcat.type)">[[subcat.type]]</li>
+
+                                            </ul>
+                                        </div>
+                                        <input type="text" name="subcategory" class="select-value1" v-model="subcat_id">
+                                    </div>
+                                </div>
+                            </div><!-- col(3) -->
+                            <div class="main-col">
+                                <div class="input-block">
+                                    <div class="select">
+                                        <div class="select-main">
+                                            <div class="select-text">{{ allTowns.first.name }}</div>
+                                            <div class="input-icon">
+                                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
+                                            </div>
+                                        </div>
+                                        <div class="select-info">
+                                            <ul>
+                                                {% for town in allTowns %}
+                                                    <li data-slug="{{ town.name_slug }}" @click='changeTown'>{{ town.name }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <input type="text" name="town" class="select-value1" v-model="town">
+                                    </div>
+                                </div>
+                            </div><!-- col(4) -->
+                            <div class="main-col">
+                                <div class="input-block">
+                                    <div class="select">
+                                        <div class="select-main">
+                                            <div class="select-text">Метро любое</div>
+                                            <div class="input-icon">
+                                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
+                                            </div>
+                                        </div>
+                                        <div class="select-info">
+                                            <ul>
+                                                <li v-for=" metro in metros" @click="changeMetro(metro.id)">[[metro.type]]</li>
+                                            </ul>
+                                        </div>
+                                        <input type="text" name="metro" class="select-value1" v-model="metro">
+                                    </div>
+                                </div>
+                            </div><!-- col(5) -->
+                            <div class="main-col">
+                                <div class="input-block">
+                                    <div class="input-wrap">
+                                        <input type="number" required name="start_price" placeholder="Цена от" v-model="start_price">
+                                    </div>
+                                </div>
+                            </div><!-- col(6) -->
+                            <div class="main-col">
+                                <div class="input-block">
+                                    <div class="input-wrap">
+                                        <input type="number" required name="end_price" placeholder="Цена до"  v-model="end_price">
+                                    </div>
+                                </div>
+                            </div><!-- col(7) -->
+                            <div class="main-col">
+                                <div class="input-block">
+                                    <div class="select">
+                                        <div class="select-main">
+                                            <div class="select-text">Рубли</div>
+                                            <div class="input-icon">
+                                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
+                                            </div>
+                                        </div>
+                                        <div class="select-info">
+                                            <ul>
+                                                <li @click="currency='RU'">Рубли</li>
+                                                <li @click="currency='US'">Доллары</li>
+
+                                            </ul>
+                                        </div>
+                                        <input type="text" name="currency" class="select-value1" v-model="currency" value="RU">
+                                    </div>
+                                </div>
+                            </div><!-- col(8) -->
+                        </div>
+                        <div class="main-block">
+                            <div class="main-block__row">
+                                <div v-show="show_house_type" class="main-col">
+                                    <div class="input-block">
+                                        <div class="select">
+                                            <div class="select-main">
+                                                <div class="select-text">Тип постройки</div>
+                                                <div class="input-icon">
+                                                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
+                                                </div>
+                                            </div>
+                                            <div class="select-info">
+                                                <ul>
+                                                    <li @click="house_type='BR'">Кирпич</li>
+                                                    <li @click="house_type='MN'">Монолит</li>
+                                                    <li @click="house_type='PL'">Панель</li>
+
+                                                </ul>
+                                            </div>
+                                            <input type="text" name="house_type" class="select-value1" v-model="house_type" value="" >
+                                        </div>
+                                    </div>
+                                </div><!-- col(1) house_type -->
+                                <div v-show="show_building_type" class="main-col">
+                                    <div class="input-block">
+                                        <div class="select">
+                                            <div class="select-main">
+                                                <div class="select-text">Любой тип жилья</div>
+                                                <div class="input-icon">
+                                                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
+                                                </div>
+                                            </div>
+                                            <div class="select-info">
+                                                <ul>
+                                                    <li @click="building_type='any'">Любой тип жилья</li>
+                                                    <li @click="building_type='new'">Новостройки</li>
+                                                    <li @click="building_type='old'">Вторичное</li>
+
+                                                </ul>
+                                            </div>
+                                            <input id="building_type" type="text" name="building_type" class="select-value1" v-model="building_type" value="">
+                                        </div>
+                                    </div>
+                                </div><!-- col(1) buld_type -->
+                                <div v-show="show_rooms" class="main-col">
+                                    <div class="input-quantity">
+                                        <div class="quantity-col">
+                                            <input type="radio" name="rooms" v-model="rooms" value="R1" >
+                                            <span class="quantity-ico">1</span>
+                                        </div>
+                                        <div class="quantity-col">
+                                            <input type="radio" name="rooms" v-model="rooms" value="R2">
+                                            <span class="quantity-ico">2</span>
+                                        </div>
+                                        <div class="quantity-col">
+                                            <input type="radio" name="rooms" v-model="rooms" value="R3">
+                                            <span class="quantity-ico">3</span>
+                                        </div>
+                                        <div class="quantity-col">
+                                            <input type="radio" name="rooms" v-model="rooms" value="R4">
+                                            <span class="quantity-ico">4</span>
+                                        </div>
+                                        <div class="quantity-col">
+                                            <input type="radio" name="rooms" v-model="rooms" value="R5">
+                                            <span class="quantity-ico">5+</span>
+                                        </div>
+                                    </div>
+                                </div><!-- col(2) rooms -->
+                                <div v-show="show_floors" class="main-col">
+                                    <div class="input-block">
+                                        <div class="input-wrap">
+                                            <input type="number" name="floor" placeholder="Этаж" v-model="floor">
+                                        </div>
+                                    </div>
+                                </div><!-- col(6) floors-->
+                                <div  v-show="show_floors"  class="main-col">
+                                    <div class="input-block">
+                                        <div class="input-wrap">
+                                            <input type="number" name="floors" placeholder="Этажей" v-model="floors">
+                                        </div>
+                                    </div>
+                                </div><!-- col(7) floors-->
+                                <div  v-show="show_square_kitchen"  class="main-col">
+                                    <div class="input-block">
+                                        <div class="input-wrap">
+                                            <input type="number" name="square_total" placeholder="Общая площадь" v-model="square_total">
+                                        </div>
+                                    </div>
+
+                                </div><!-- col(7) kitchen-->
+                                <div  v-show="show_square_kitchen"  class="main-col">
+                                    <div class="input-block">
+                                        <div class="input-wrap">
+                                            <input type="number" name="square_kitchen" placeholder="Площадь кухни" v-model="square_kitchen">
+                                        </div>
+                                    </div>
+                                </div><!-- col(7) kitchen-->
+                                <div  v-show="show_square_land"  class="main-col">
+                                    <div class="input-block">
+                                        <div class="input-wrap">
+                                            <input type="number" name="square_land"  placeholder="Площадь земли" v-model="square_land">
+                                        </div>
+                                    </div>
+                                </div><!-- col(7) land-->
+                                {#                                <div class="main-col main-col__row">#}
+                                {#                                    <div class="input-block">#}
+                                {#                                        <div class="input-wrap">#}
+                                {#                                            <input type="number" name="from" placeholder="От">#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                    <div class="input-block">#}
+                                {#                                        <div class="input-wrap">#}
+                                {#                                            <input type="number" name="to" placeholder="До">#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                </div><!-- col(3) -->#}
+                                {#                                <div class="main-col main-col__row">#}
+                                {#                                    <div class="input-block">#}
+                                {#                                        <div class="input-wrap">#}
+                                {#                                            <input type="number" name="from" placeholder="От">#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                    <div class="input-block">#}
+                                {#                                        <div class="input-wrap">#}
+                                {#                                            <input type="number" name="to" placeholder="До">#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                </div><!-- col(4) -->#}
+                            </div>
+                        </div>
+                        <div class="main-bottom">
+                            <a href="#" class="main-details">
+                                Еще детали
+                                <span class="details-arrow">
 								<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
 							</span>
-						</a>
-						<div class="main-btns">
-							<a href="#" class="main-btn">Сбросить</a>
-							<a href="#" class="second-btn">Показать</a>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</section>
-	<!-- end main -->
-	<!-- start advertisements -->
-	<section class="advertisements">
-		<div class="wrapper">
-			<div class="streamline" data-aos="fade" data-aos-duration="500" data-aos-once="true">
-				Упорядочить:
-				<span class="streamline-link">
+                            </a>
+                            <div class="main-btns">
+                                <a href="#" class="main-btn">Сбросить</a>
+                                <button type="submit"  class="second-btn">Показать</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </section>
+        <!-- end main -->
+        <!-- start advertisements -->
+        <section v-show="ads.length > 0" class="advertisements">
+            <div class="wrapper">
+                <div class="streamline" data-aos="fade" data-aos-duration="500" data-aos-once="true">
+                    Упорядочить:
+                    <span @click="changeOrder" class="streamline-link">
 					По дате
 					<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.21307 2.48409L3.59943 0.204545C3.73125 0.0681818 3.9108 0 4.10852 0C4.30625 0 4.48352 0.0681818 4.61761 0.204545L7.01307 2.48409C7.29716 2.75455 7.29716 3.19545 7.01307 3.46591C6.72898 3.73636 6.26989 3.73636 5.9858 3.46591L4.84034 2.37273V7.30455C4.84034 7.68864 4.51534 8 4.11307 8C3.7108 8 3.3858 7.68864 3.3858 7.30455V2.37273L2.24034 3.46818C1.95625 3.73864 1.49716 3.73864 1.21307 3.46818C0.928977 3.19545 0.928977 2.75682 1.21307 2.48409Z" fill="#001B36"/><mask id="agrefg" mask-type="alpha" maskUnits="userSpaceOnUse" x="1" y="0" width="7" height="8"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.21307 2.48409L3.59943 0.204545C3.73125 0.0681818 3.9108 0 4.10852 0C4.30625 0 4.48352 0.0681818 4.61761 0.204545L7.01307 2.48409C7.29716 2.75455 7.29716 3.19545 7.01307 3.46591C6.72898 3.73636 6.26989 3.73636 5.9858 3.46591L4.84034 2.37273V7.30455C4.84034 7.68864 4.51534 8 4.11307 8C3.7108 8 3.3858 7.68864 3.3858 7.30455V2.37273L2.24034 3.46818C1.95625 3.73864 1.49716 3.73864 1.21307 3.46818C0.928977 3.19545 0.928977 2.75682 1.21307 2.48409Z" fill="white"/></mask><g mask="url(#agrefg)"><rect width="8" height="8" fill="#8B8B8B"/></g><path fill-rule="evenodd" clip-rule="evenodd" d="M13.7869 5.51591L11.4006 7.79545C11.2687 7.93182 11.0892 8 10.8915 8C10.6937 8 10.5165 7.93182 10.3824 7.79545L7.98693 5.51591C7.70284 5.24545 7.70284 4.80455 7.98693 4.53409C8.27102 4.26364 8.73011 4.26364 9.0142 4.53409L10.1597 5.62727L10.1597 0.695454C10.1597 0.311364 10.4847 3.07321e-07 10.8869 2.72153e-07C11.2892 2.36985e-07 11.6142 0.311363 11.6142 0.695454L11.6142 5.62727L12.7597 4.53182C13.0437 4.26136 13.5028 4.26136 13.7869 4.53182C14.071 4.80455 14.071 5.24318 13.7869 5.51591Z" fill="#001B36"/><mask id="dsa" mask-type="alpha" maskUnits="userSpaceOnUse" x="7" y="0" width="7" height="8"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.7869 5.51591L11.4006 7.79545C11.2687 7.93182 11.0892 8 10.8915 8C10.6937 8 10.5165 7.93182 10.3824 7.79545L7.98693 5.51591C7.70284 5.24545 7.70284 4.80455 7.98693 4.53409C8.27102 4.26364 8.73011 4.26364 9.0142 4.53409L10.1597 5.62727L10.1597 0.695454C10.1597 0.311364 10.4847 3.07321e-07 10.8869 2.72153e-07C11.2892 2.36985e-07 11.6142 0.311363 11.6142 0.695454L11.6142 5.62727L12.7597 4.53182C13.0437 4.26136 13.5028 4.26136 13.7869 4.53182C14.071 4.80455 14.071 5.24318 13.7869 5.51591Z" fill="white"/></mask><g mask="url(#dsa)"><rect x="15" y="8" width="8" height="8" transform="rotate(180 15 8)" fill="#8B8B8B"/></g></svg>
 				</span>
-			</div>
-			<div class="advertisements-row">
-				<div class="advertisements-wrap" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
-					<div class="advertisements-images">
-						<div class="advertisements-slider">
-							<div class="advertisements-slide">
-								<img src="img/post-1.png" alt="">
-							</div>
-							<div class="advertisements-slide">
-								<img src="img/post-2.png" alt="">
-							</div>
-							<div class="advertisements-slide">
-								<img src="img/post-3.png" alt="">
-							</div>
-							<div class="advertisements-slide">
-								<img src="img/post-4.png" alt="">
-							</div>
-							<div class="advertisements-slide">
-								<img src="img/post-5.png" alt="">
-							</div>
-						</div>
-						<div class="advertisements-navigation">
-							<div class="advertisements-navigation__slide">
-								<img src="img/post-1.png" alt="">
-							</div>
-							<div class="advertisements-navigation__slide">
-								<img src="img/post-2.png" alt="">
-							</div>
-							<div class="advertisements-navigation__slide">
-								<img src="img/post-3.png" alt="">
-							</div>
-							<div class="advertisements-navigation__slide">
-								<img src="img/post-4.png" alt="">
-							</div>
-							<div class="advertisements-navigation__slide">
-								<img src="img/post-5.png" alt="">
-							</div>
-						</div>
-					</div>
-					<div class="advertisements-info">
-						<div class="advertisements-top">
-							<span class="advertisements-price">4 900 000 ₽</span>
-							<span class="advertisements-num">Номер объекта: 01-15583</span>
-						</div>
-						<ul class="advertisements-list">
-							<li>1 комнатная</li>
-							<li>Площадь 60/35/– м2</li>
-							<li>Этаж 2/3</li>
-						</ul>
-						<span class="advertisements-address">г. Королёв, ул. Радужная, д. 7</span>
-						<span class="advertisements-date">25 Мая 2020</span>
-						<div class="advertisements-btns">
-							<a href="#modal-agreement" class="button-modal second-btn">Детали</a>
-							<a href="#" class="main-btn">Показать номер</a>
-						</div>
-					</div>
-				</div>
+                </div>
+                <div class="advertisements-row">
 
-			</div>
-			<div class="pagination" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
-				<a href="#" class="pagination-prev">
-					<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.59108 12.0046L18.5482 2.67425C18.7732 2.44381 18.7679 2.0633 18.5375 1.8275L16.9357 0.18758C16.7054 -0.0482256 16.3304 -0.0535849 16.1054 0.176861L5.16608 11.5705C5.04822 11.6885 4.99465 11.8492 5.00537 12.0046C5.00001 12.1654 5.05358 12.3208 5.16608 12.4387L16.1054 23.8378C16.3304 24.0682 16.7054 24.0629 16.9357 23.8271L18.5375 22.1871C18.7679 21.9513 18.7732 21.5708 18.5482 21.3404L9.59108 12.0046Z" fill="#001B36"/><mask id="inev" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="0" width="14" height="25"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.59108 12.0046L18.5482 2.67425C18.7732 2.44381 18.7679 2.0633 18.5375 1.8275L16.9357 0.18758C16.7054 -0.0482256 16.3304 -0.0535849 16.1054 0.176861L5.16608 11.5705C5.04822 11.6885 4.99465 11.8492 5.00537 12.0046C5.00001 12.1654 5.05358 12.3208 5.16608 12.4387L16.1054 23.8378C16.3304 24.0682 16.7054 24.0629 16.9357 23.8271L18.5375 22.1871C18.7679 21.9513 18.7732 21.5708 18.5482 21.3404L9.59108 12.0046Z" fill="white"/></mask><g mask="url(#inev)"><rect width="24" height="24" fill="#8B8B8B"/></g></svg>
-				</a>
-				<ul class="pagination-list">
-					<li class="active">1</li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><span>...</span></li>
-					<li><a href="#">215</a></li>
-				</ul>
-				<a href="#" class="pagination-next">
-					<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.1232 12.0046L5.16607 2.67425C4.94107 2.44381 4.94642 2.0633 5.17678 1.8275L6.77857 0.18758C7.00892 -0.0482256 7.38392 -0.0535849 7.60892 0.176861L18.5482 11.5759C18.6661 11.6938 18.7196 11.8546 18.7089 12.01C18.7143 12.1708 18.6607 12.3262 18.5482 12.4441L7.60892 23.8378C7.38392 24.0682 7.00892 24.0629 6.77857 23.8271L5.17678 22.1871C4.94642 21.9513 4.94107 21.5708 5.16607 21.3404L14.1232 12.0046Z" fill="#001B36"/><mask id="jnew" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="0" width="14" height="25"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.1232 12.0046L5.16607 2.67425C4.94107 2.44381 4.94642 2.0633 5.17678 1.8275L6.77857 0.18758C7.00892 -0.0482256 7.38392 -0.0535849 7.60892 0.176861L18.5482 11.5759C18.6661 11.6938 18.7196 11.8546 18.7089 12.01C18.7143 12.1708 18.6607 12.3262 18.5482 12.4441L7.60892 23.8378C7.38392 24.0682 7.00892 24.0629 6.77857 23.8271L5.17678 22.1871C4.94642 21.9513 4.94107 21.5708 5.16607 21.3404L14.1232 12.0046Z" fill="white"/></mask><g mask="url(#jnew)"><rect width="24" height="24" fill="#8B8B8B"/></g></svg>
-				</a>
-			</div>
-		</div>
-	</section>
-	<!-- end advertisements -->
-	<!-- start about -->
-	<section class="about" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
-		<div class="wrapper">
-			<div class="about-mob">
-				<h2 class="page-title">Агентство недвижимости “3 Ступени”</h2>
-				<img src="{% static 'img/about-mob.jpg' %}" alt="">
-			</div>
-			<div class="about-row">
-				<div class="about-info">
-					<p>Наше агентство недвижимости создано для людей, которые желают выгодно купить, продать, сдать, снять или обменять любой объект недвижимости в Подмосковье. "3 Ступени" предлагает услуги по купле-продаже, обмену, приватизации, сдаче в аренду жилых и не жилых помещений в Королеве и других городах Ярославского направления. А также услуги по согласованию перепланировок, сопровождению сделок, юридической проверке всей документации, консультации квалифицированного юриста и экспертов.</p>
-					<p>Постоянно обновляемая база недвижимости агентства позволит вам найти самые свежие и актуальные предложения на рынке недвижимости ближнего Подмосковья.  На сайте представлены новостройки, вторичное жилье, коммерческая недвижимость, земельные участки, дома и коттеджи.</p>
-					<p>Агентство недвижимости «3 Ступени» является действительным членом Российской Гильдии Риэлторов. Для желающих окажем помощь всего за 1 день. При недостатке материальных средств, наши специалисты предложат рассмотреть различные варианты кредитования или ипотеки.</p>
-					<p>Вы можете подать заявку на сайте агентства недвижимости «3 Ступени» и получить консультации у специалистов по жилищному законодательству, либо просто разместить Ваши предложения и пожелания в онлайн-заявке. Вашему вниманию представлен большой объем тематических статей, из которых вы можете почерпнуть полезную информацию для себя.</p>
-					<p>Приглашаем к взаимовыгодному сотрудничеству: строительные компании, риэлторов, частных маклеров и просто, владельцев собственности. Ваши предложения вы можете размещать на нашем сайте. Кроме того, приглашаем собственников жилья к заключению эксклюзивного договора. Для вас это будет совершенно бесплатно.</p>
-				</div>
-				<div class="about-img">
-					<img src="{% static 'img/about-img.jpg' %}" alt="">
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- end about -->
+                    <div class="advertisements-wrap" data-aos="fade-up" data-aos-duration="500" data-aos-once="true"
+                         v-for="ad in ads" >
+                        <div class="advertisements-images">
+                            <div class="advertisements-slider">
+                                <div class="advertisements-slide" v-for="img in ad.images" >
+                                    <img :src="img" alt="">
+                                </div>
+                            </div>
+                            <div class="advertisements-navigation">
+                                <div class="advertisements-navigation__slide" v-for="img in ad.images">
+                                    <img :src="img" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="advertisements-info">
+                            <div class="advertisements-top">
+                                <span class="advertisements-price">[[ad.price]] [[ad.currency]]</span>
+                                <span class="advertisements-num">Номер объекта: [[ad.number]]</span>
+                            </div>
+                            <ul class="advertisements-list">
+                                <li>[[ad.rooms]] комнатная</li>
+                                <li>[[ad.square]]</li>
+                                <li>[[ad.floors]]</li>
+                            </ul>
+                            <span class="advertisements-address">[[ad.address]]</span>
+                            <span class="advertisements-date">[[ad.date]]</span>
+                            <div class="advertisements-btns">
+                                <a href="#modal-agreement" class="button-modal second-btn">Детали</a>
+                                <a style="cursor: pointer" @click.prevent="openAd(ad.number)" class="main-btn">Показать номер</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div v-show="pages > 1" class="pagination" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+                    <a v-show="page!=1" @click.prevent="page-=1" class="pagination-prev">
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.59108 12.0046L18.5482 2.67425C18.7732 2.44381 18.7679 2.0633 18.5375 1.8275L16.9357 0.18758C16.7054 -0.0482256 16.3304 -0.0535849 16.1054 0.176861L5.16608 11.5705C5.04822 11.6885 4.99465 11.8492 5.00537 12.0046C5.00001 12.1654 5.05358 12.3208 5.16608 12.4387L16.1054 23.8378C16.3304 24.0682 16.7054 24.0629 16.9357 23.8271L18.5375 22.1871C18.7679 21.9513 18.7732 21.5708 18.5482 21.3404L9.59108 12.0046Z" fill="#001B36"/><mask id="inev" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="0" width="14" height="25"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.59108 12.0046L18.5482 2.67425C18.7732 2.44381 18.7679 2.0633 18.5375 1.8275L16.9357 0.18758C16.7054 -0.0482256 16.3304 -0.0535849 16.1054 0.176861L5.16608 11.5705C5.04822 11.6885 4.99465 11.8492 5.00537 12.0046C5.00001 12.1654 5.05358 12.3208 5.16608 12.4387L16.1054 23.8378C16.3304 24.0682 16.7054 24.0629 16.9357 23.8271L18.5375 22.1871C18.7679 21.9513 18.7732 21.5708 18.5482 21.3404L9.59108 12.0046Z" fill="white"/></mask><g mask="url(#inev)"><rect width="24" height="24" fill="#8B8B8B"/></g></svg>
+                    </a>
+                    <ul class="pagination-list">
+                        <li :class="{active:i==page}" v-for="i in pages" @click="page=i">[[i]]</li>
+
+
+                    </ul>
+                    <a v-show="page!=pages" @click.prevent="page+=1" class="pagination-next">
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.1232 12.0046L5.16607 2.67425C4.94107 2.44381 4.94642 2.0633 5.17678 1.8275L6.77857 0.18758C7.00892 -0.0482256 7.38392 -0.0535849 7.60892 0.176861L18.5482 11.5759C18.6661 11.6938 18.7196 11.8546 18.7089 12.01C18.7143 12.1708 18.6607 12.3262 18.5482 12.4441L7.60892 23.8378C7.38392 24.0682 7.00892 24.0629 6.77857 23.8271L5.17678 22.1871C4.94642 21.9513 4.94107 21.5708 5.16607 21.3404L14.1232 12.0046Z" fill="#001B36"/><mask id="jnew" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="0" width="14" height="25"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.1232 12.0046L5.16607 2.67425C4.94107 2.44381 4.94642 2.0633 5.17678 1.8275L6.77857 0.18758C7.00892 -0.0482256 7.38392 -0.0535849 7.60892 0.176861L18.5482 11.5759C18.6661 11.6938 18.7196 11.8546 18.7089 12.01C18.7143 12.1708 18.6607 12.3262 18.5482 12.4441L7.60892 23.8378C7.38392 24.0682 7.00892 24.0629 6.77857 23.8271L5.17678 22.1871C4.94642 21.9513 4.94107 21.5708 5.16607 21.3404L14.1232 12.0046Z" fill="white"/></mask><g mask="url(#jnew)"><rect width="24" height="24" fill="#8B8B8B"/></g></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- end advertisements -->
+        <!-- start about -->
+        <section class="about" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+            <div class="wrapper">
+                <div class="about-mob">
+                    <h2 class="page-title">Агентство недвижимости “3 Ступени”</h2>
+                    <img src="{% static 'img/about-mob.jpg' %}" alt="">
+                </div>
+                <div class="about-row">
+                    <div class="about-info">
+                        <p>Наше агентство недвижимости создано для людей, которые желают выгодно купить, продать, сдать, снять или обменять любой объект недвижимости в Подмосковье. "3 Ступени" предлагает услуги по купле-продаже, обмену, приватизации, сдаче в аренду жилых и не жилых помещений в Королеве и других городах Ярославского направления. А также услуги по согласованию перепланировок, сопровождению сделок, юридической проверке всей документации, консультации квалифицированного юриста и экспертов.</p>
+                        <p>Постоянно обновляемая база недвижимости агентства позволит вам найти самые свежие и актуальные предложения на рынке недвижимости ближнего Подмосковья.  На сайте представлены новостройки, вторичное жилье, коммерческая недвижимость, земельные участки, дома и коттеджи.</p>
+                        <p>Агентство недвижимости «3 Ступени» является действительным членом Российской Гильдии Риэлторов. Для желающих окажем помощь всего за 1 день. При недостатке материальных средств, наши специалисты предложат рассмотреть различные варианты кредитования или ипотеки.</p>
+                        <p>Вы можете подать заявку на сайте агентства недвижимости «3 Ступени» и получить консультации у специалистов по жилищному законодательству, либо просто разместить Ваши предложения и пожелания в онлайн-заявке. Вашему вниманию представлен большой объем тематических статей, из которых вы можете почерпнуть полезную информацию для себя.</p>
+                        <p>Приглашаем к взаимовыгодному сотрудничеству: строительные компании, риэлторов, частных маклеров и просто, владельцев собственности. Ваши предложения вы можете размещать на нашем сайте. Кроме того, приглашаем собственников жилья к заключению эксклюзивного договора. Для вас это будет совершенно бесплатно.</p>
+                    </div>
+                    <div class="about-img">
+                        <img src="{% static 'img/about-img.jpg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end about -->
+    </div>
 {% endblock %}
 
 {% block js %}
-{{ block.super }}
+    {{ block.super }}
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            delimiters: ['[[', ']]'],
+            el: '#app',
+            data: {
+                page:1,
+                pages:1,
+                cat:'',
+                order:'-created_at',
+                subcat:'',
+                subcat_id:0,
+                town:'',
+                building_type:'any',
+                house_type:'',
+                rooms:'',
+                currency:'RU',
+                metro:'0',
+                action_type:'RT',
+                start_price:'',
+                end_price:'',
+                floor:'',
+                floors:'',
+                square_total:'',
+                square_kitchen:'',
+                square_land:'',
+                show_square_kitchen: false,
+                show_building_type: false,
+                show_square_land: false,
+                show_floors: false,
+                show_rooms: false,
+                show_house_type: false,
+                metros:[],
+                subcats:[],
+                ads:[]
+            },
+            mounted: function () {
+                this.$nextTick(function () {
+                    this.cat = '{{ allCategories.first.name_slug }}'
+                    this.town = '{{ allTowns.first.name_slug }}'
+                    this.getInfo('getSubcats','{{ allCategories.first.name_slug }}')
+                    this.getInfo('getMetros','{{ allTowns.first.name_slug }}')
+                    this.getInfo('getSubcatInfo',this.subcat_id)
+                })
+            },
+            watch: {
+                cat: function (val) {
+                    this.getInfo('getSubcats',this.cat)
+                },
+                town: function (val) {
+                    this.getInfo('getMetros',this.town)
+                },
+                subcat_id: function (val) {
+                    this.building_type=''
+                    this.house_type=''
+                    this.rooms=''
+                    this.floor=''
+                    this.floors=''
+                    this.square_total=''
+                    this.square_kitchen=''
+                    this.square_land=''
+                    this.getInfo('getSubcatInfo',this.subcat_id)
+                },
+                 page: function () {
+                    console.log('page',this.page)
+                    this.searchIt()
+
+
+                }
+            },
+            methods:{
+                changeOrder(){
+                    if (this.order === '-created_at'){
+                        this.order = 'created_at'
+                    }
+                    else {
+                        this.order ='-created_at'
+                    }
+                    this.searchIt()
+                },
+                openAd(number){
+                    console.log(number)
+                    window.location.href = `/ads/${number}`
+                },
+                changeCat(){
+                    this.cat = event.target.dataset.slug
+                },
+                changeTown(){
+                    this.town = event.target.dataset.slug
+                },
+                changeMetro(id){
+                    this.metro = id
+                },
+                getSubcatInfo(id,type){
+                    this.subcat = type
+                    this.subcat_id = id
+                    console.log(id)
+
+                },
+                getInfo: function(action,value){
+                    let body = {}
+                    if (action ==='getSubcats'){
+                        body = {
+                            'action':action,
+                            'value':value
+                        }
+                    }
+                    if (action ==='getMetros'){
+                        body = {
+                            'action':action,
+                            'value':value
+                        }
+                    }
+                    if (action ==='getSubcatInfo'){
+                        body = {
+                            'action':action,
+                            'value':value
+                        }
+                    }
+                    fetch('{% url 'get_info' %}', {
+                        method: 'post',
+                        body: JSON.stringify(body),
+                        headers: { "X-CSRFToken": '{{  csrf_token }}' },
+                        credentials: 'same-origin'
+                    }).then(res=>res.json())
+                        .then(res => {
+                            console.log(res)
+                            if (action ==='getSubcats'){
+                                this.subcats = res
+                                this.subcat = res[0].type
+                                this.subcat_id = res[0].id
+                            }
+
+                            if (action ==='getMetros'){
+                                this.metros = res
+                            }
+
+                            if (action ==='getSubcatInfo'){
+                                this.show_building_type = (res[0]['show_building_type'])
+                                this.show_square_kitchen = (res[0]['show_square_kitchen'])
+                                this.show_square_land = (res[0]['show_square_land'])
+                                this.show_floors = (res[0]['show_floors'])
+                                this.show_rooms = (res[0]['show_rooms'])
+                                this.show_house_type = (res[0]['show_house_type'])
+                            }
+                        })
+                },
+                searchIt(){
+                    this.ads=[]
+                    let body = {
+                        'page':this.page,
+                        'order':this.order,
+                        'cat':this.cat,
+                        'subcat':this.subcat_id,
+                        'town':this.town,
+                        'building_type':this.building_type,
+                        'house_type':this.house_type,
+                        'rooms':this.rooms,
+                        'currency':this.currency,
+                        'metro':this.metro,
+                        'action_type':this.action_type,
+                        'start_price':this.start_price,
+                        'end_price':this.end_price,
+                        'floor':this.floor,
+                        'floors':this.floors,
+                        'square_total':this.square_total,
+                        'square_kitchen':this.square_kitchen,
+                        'square_land':this.square_land
+                    }
+                    fetch('{% url 'searchIt' %}', {
+                        method: 'post',
+                        body: JSON.stringify(body),
+                        headers: { "X-CSRFToken": '{{  csrf_token }}' },
+                        credentials: 'same-origin'
+                    }).then(res=>res.json())
+                        .then(res => {
+                            console.log(res)
+
+                            this.ads = res['result']
+                            this.pages = res['pages']
+                            this.page = res['page']
+
+                            }).then( tt => {
+                                  console.log('then')
+                        slid()
+                    }
+
+                    )
+
+
+                }
+
+            },
+
+        })
+    </script>
+
+
 {% endblock %}

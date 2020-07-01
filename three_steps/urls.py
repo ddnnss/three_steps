@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('cp/', include('cp.urls')),
     path('user/', include('customuser.urls')),
+    path('ads/', include('ads.urls')),
     path('index.html', RedirectView.as_view(url='/', permanent=False), name='index1'),
     path('index.php', RedirectView.as_view(url='/', permanent=False), name='index2'),
     path('articles/', include('article.urls')),

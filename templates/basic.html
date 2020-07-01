@@ -17,6 +17,11 @@
     <meta name="theme-color" content="#000">
     <meta name="msapplication-navbutton-color" content="#000">
     <meta name="apple-mobile-web-app-status-bar-style" content="#000">
+    <style>
+        .select-text-alt{
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -28,6 +33,25 @@
 {% block js %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{% static 'js/scripts.min.js' %}"></script>
+     <script>
+    function slid() {
+        $(".advertisements-slider").each(function () {
+            $(this).slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: !1,
+                fade: !0,
+                asNavFor: $(this).parents(".advertisements-wrap").find(".advertisements-navigation"),
+                responsive: [{ breakpoint: 701, settings: { slidesToShow: 1, slidesToScroll: 1, infinite: !0, dots: !0, fade: !1 } }],
+            }),
+                $(this)
+                    .parents(".advertisements-wrap")
+                    .find(".advertisements-navigation")
+                    .slick({ slidesToShow: 4, slidesToScroll: 1, dots: !0, focusOnSelect: !0, vertical: !0, verticalSwiping: !0, asNavFor: $(this).parents(".advertisements-wrap").find(".advertisements-slider") });
+        })
+
+    }
+    </script>
     <script>
     function setCategory(id) {
         document.getElementById('category').value = id

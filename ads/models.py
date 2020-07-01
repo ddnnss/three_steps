@@ -1,8 +1,6 @@
 from django.db import models
 from django.utils.safestring import mark_safe
-
 from customuser.models import User
-from pytils.translit import slugify
 from django.db.models.signals import post_save
 from django.core.files import File
 from io import BytesIO
@@ -22,7 +20,7 @@ class Category(models.Model):
         super(Category, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f'Тип нежвижимости : {self.name} '
+        return f'{self.name} '
 
     class Meta:
         verbose_name = "Тип нежвижимости"
@@ -45,7 +43,7 @@ class SubCategory(models.Model):
         super(SubCategory, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f'Под тип нежвижимости : {self.name} '
+        return f'{self.name} '
 
     class Meta:
         verbose_name = "Под тип нежвижимости"
@@ -61,7 +59,7 @@ class Metro(models.Model):
         super(Metro, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f'Метро : {self.name} '
+        return f'{self.name} '
 
     class Meta:
         verbose_name = "Метро"
@@ -78,7 +76,7 @@ class Town(models.Model):
         super(Town, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f'Город : {self.name} '
+        return f'{self.name} '
 
     class Meta:
         verbose_name = "Город"
@@ -205,7 +203,7 @@ class Ads(models.Model):
     description = models.TextField('Описание', blank=True, null=True)
     currency_type = models.CharField('Валюта', max_length=20, choices=CURRENCY_CHOICES, default=RUB)
     price = models.IntegerField('Цена', blank=False, null=True)
-    ads_type = models.CharField(max_length=10, blank=True, null=True)
+    ads_type = models.CharField('Объявления с сайта',max_length=50, blank=True, null=True)
     created_at = models.DateTimeField('Добавлено', auto_now_add=True)
     updated_at = models.DateTimeField('Изменено', auto_now=True)
 
@@ -214,10 +212,67 @@ class Ads(models.Model):
     # def save(self, *args, **kwargs):
     #     self.number = f'01-{10000 + self.id}'
     #     super(Ads, self).save(*args, **kwargs)
+    def get_images(self):
+        return self.images.all()
+
+    def get_currency(self):
+         if self.currency_type == 'RU':
+             return '₽'
+         else:
+            return '$'
+    def get_action_type(self):
+        if self.action_type == self.TO_RENT:
+            return 'Сдается'
+        elif self.action_type == self.SELL:
+            return 'Продается'
+
+    def get_ads_type(self):
+        if self.square_land:
+            return f'земельный участок {self.square_land}'
+        else:
+            return f'{self.get_rooms_display()}к. {self.subcategory.name.lower()}'
+
+    def get_square(self):
+        if self.square_land:
+            return f'{self.square_land  if self.square_land else "" }'
+        else:
+            return f'{str(self.square_total) + "/" if  self.square_total else "" }' \
+                   f'{str(self.square_living) + "/" if self.square_living else "" }' \
+                   f'{self.square_kitchen  if self.square_kitchen else "" }'
+
+    def get_floors(self):
+        return f'{str(self.floor) + "/"  if self.floor else "" }' \
+               f'{self.floor_total  if self.floor_total else "" }, '
+
+    def split_descrition(self):
+        print(self.description.split('\n'))
+        description = ''
+        for line in self.description.split('\n'):
+            description += f'<p>{line}</p>'
+        return description
+
+    def get_own_years_val(self):
+        if self.own_years:
+            return f'{self.get_own_years_display()} в собственности,'
+        else:
+            return ''
+    def get_order_type_val(self):
+        if self.order_type:
+            return f'{self.get_order_type_display()} ,'
+    def get_phone(self):
+        return f'{self.contact_phone.replace("+","").replace("(","").replace(")","").replace("-","").replace(" ","")}'
+
+    def get_full_description(self):
+        return f'<p>{self.get_action_type()} {self.get_ads_type()}, {self.town.name} {self.street} {self.street_number}, ' \
+               f'{self.get_square()}, {self.get_floors()} {self.get_house_type_display()}</p>' \
+               f'{self.split_descrition()}' \
+               f'<p>{self.get_own_years_val()} {self.get_order_type_val()} {self.price} {self.get_currency()}, ' \
+               f'{self.contact_name}, <a href="tel:{self.get_phone()}">{self.contact_phone}</a></p>'
+
     def image_tag(self):
         # used in the admin site model as a "thumbnail"
-        if self.adsimage_set.exists():
-            return mark_safe('<img src="{}" width="100" height="100" />'.format(self.adsimage_set.first().image_thumb.url))
+        if self.images.exists():
+            return mark_safe('<img src="{}" width="100" height="100" />'.format(self.images.first().image_thumb.url))
         else:
             return mark_safe('<span>Нет загружениых фото</span>')
 
@@ -232,6 +287,7 @@ class Ads(models.Model):
 
 def ads_post_save(sender, instance, created, **kwargs):
    if created:
+       instance.category = instance.subcategory.category
        instance.number = f'01-{10000 + instance.id}'
        instance.save()
 
@@ -245,6 +301,7 @@ class AdsImage(models.Model):
         null=True,
         on_delete=models.CASCADE,
         verbose_name="Для обьявления",
+        related_name='images'
     )
     image = models.ImageField('Изображение', blank=False, null=True,upload_to='ads/image')
     image_thumb = models.ImageField('Изображение', blank=True, null=True,upload_to='ads/image', editable=False)
