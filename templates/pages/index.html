@@ -77,14 +77,14 @@
                                 <div class="input-block">
                                     <div class="select">
                                         <div class="select-main">
-                                            <div class="select-text">{{ allTowns.first.name }}</div>
+                                            <div class="select-text">{{ towns.first.name }}</div>
                                             <div class="input-icon">
                                                 <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
                                             </div>
                                         </div>
                                         <div class="select-info">
                                             <ul>
-                                                {% for town in allTowns %}
+                                                {% for town in towns %}
                                                     <li data-slug="{{ town.name_slug }}" @click='changeTown'>{{ town.name }}</li>
                                                 {% endfor %}
                                             </ul>
@@ -262,14 +262,14 @@
                                 <div  v-show="show_square_land"  class="main-col">
                                     <div class="input-block">
                                         <div class="input-wrap">
-                                            <input type="number" name="square_land"  placeholder="Площадь земли от" v-model="square_land_from">
+                                            <input type="number" name="square_land"  placeholder="Кол-во соток от" v-model="square_land_from">
                                         </div>
                                     </div>
                                 </div><!-- col(7) land-->
                                 <div  v-show="show_square_land"  class="main-col">
                                     <div class="input-block">
                                         <div class="input-wrap">
-                                            <input type="number" name="square_land"  placeholder="Площадь земли до" v-model="square_land_to">
+                                            <input type="number" name="square_land"  placeholder="Кол-во соток до" v-model="square_land_to">
                                         </div>
                                     </div>
                                 </div><!-- col(7) land-->
@@ -456,9 +456,9 @@
             mounted: function () {
                 this.$nextTick(function () {
                     this.cat = '{{ allCategories.first.name_slug }}'
-                    this.town = '{{ allTowns.first.name_slug }}'
+                    this.town = '{{ towns.first.name_slug }}'
                     this.getInfo('getSubcats','{{ allCategories.first.name_slug }}')
-                    this.getInfo('getMetros','{{ allTowns.first.name_slug }}')
+                    this.getInfo('getMetros','{{ towns.first.name_slug }}')
                     this.getInfo('getSubcatInfo',this.subcat_id)
                 })
             },

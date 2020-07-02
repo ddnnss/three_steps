@@ -40,7 +40,7 @@
 					</ul>
 					<div class="post-btns">
 						<a @click.prevent="modal_ads_number='{{ ads.number }}', modal_show=true, modal_send=false" class="second-btn button-modal">Хочу посмотреть</a>
-						<a href="#" class="main-btn">Заявка на кредит</a>
+						<a href="{% url 'credit_help' %}" class="main-btn">Заявка на кредит</a>
 					</div>
 				</div>
 			</div>

@@ -21,15 +21,15 @@
 								</div>
 								<div class="select-info">
 									<ul>
-										<li>Ваш город</li>
-										<li>Ваш город2</li>
-										<li>Cанкт-Петербург</li>
+                                        {% for town in towns %}
+										<li>{{ town.name }}</li>
+										{% endfor %}
 									</ul>
 								</div>
 								<input type="text" name="text" class="select-value">
 							</div>
 						</div>
-						<p class="header-city">Королев</p>
+{#						<p class="header-city">Королев</p>#}
 					</div>
 					<div class="header-col header-col__2">
 						<b>Ежедневно</b>

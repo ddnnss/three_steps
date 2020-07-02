@@ -71,8 +71,8 @@
                                                 </div>
                                                 <div class="select-info">
                                                     <ul>
-                                                        <li @click="credit_len='m'">мес</li>
-                                                        <li @click="credit_len='y'">лет</li>
+                                                        <li @click="credit_len1='m'">мес</li>
+                                                        <li @click="credit_len1='y'">лет</li>
 
                                                     </ul>
                                                 </div>
@@ -101,7 +101,7 @@
                                     <div class="calculator-btn">
                                         <a @click.prevent="calcForm1" class="second-btn">Расчитать</a>
                                     </div>
-                                    <p>Ежемесячный платеж составит  [[form1_result]] [[currency_sign]]</p>
+                                    <h4 style="padding-top: 30px;padding-bottom: 0" v-show="form1_result!='NaN' & form1_result" class="calculator-title">Ежемесячный платеж составит  [[form1_result]] [[currency_sign]]</h4>
 
                                 </div>
                             </form>
@@ -113,7 +113,7 @@
                                     <label for="j-2">Сумма кредита</label>
                                     <div class="input-block">
                                         <div class="input-wrap">
-                                            <input id="j-2" type="name" name="name">
+                                            <input id="j-2" type="number" name="name" v-model="total_credit_cost1">
                                             <span class="input-text">руб</span>
                                         </div>
                                     </div>
@@ -121,49 +121,51 @@
                                     <div class="sell-wrap__row sell-wrap__row-last">
                                         <div class="input-block">
                                             <div class="input-wrap">
-                                                <input id="h-12" type="text" name="text" placeholder="">
+                                                 <input id="h-12" type="number" v-model="credit_time1" placeholder="">
                                             </div>
                                         </div>
                                         <div class="input-block sell-wrap__small sell-wrap__small-s">
                                             <div class="select">
                                                 <div class="select-main">
-                                                    <div class="select-text">лет</div>
+                                                    <div class="select-text">мес</div>
                                                     <div class="input-icon">
                                                         <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
                                                     </div>
                                                 </div>
                                                 <div class="select-info">
                                                     <ul>
-                                                        <li>лет</li>
-                                                        <li>лет2</li>
-                                                        <li>лет3</li>
+                                                        <li @click="credit_len1='m'">мес</li>
+                                                        <li @click="credit_len1='y'">лет</li>
+
                                                     </ul>
                                                 </div>
-                                                <input type="text" name="text" class="select-value">
+                                                <input type="text" name="text" class="select-value1" v-model="credit_len1">
                                             </div>
                                         </div>
                                     </div>
                                     <label for="j-41">Процентная ставка</label>
                                     <div class="input-block">
                                         <div class="input-wrap">
-                                            <input id="j-41" type="text" name="text">
+                                            <input id="j-41" type="number" name="text" v-model="credit_percent1">
                                             <span class="input-text">% годовых</span>
                                         </div>
                                     </div>
                                     <label for="j-4">Вид платежа</label>
                                     <div class="radio">
-                                        <input type="radio" name="pay" checked>
+                                        <input type="radio" name="pay1" v-model="pay_type1"  value="an">
                                         <span class="radio-ico"></span>
                                         <p>Аннуитетный</p>
                                     </div>
                                     <div class="radio">
-                                        <input type="radio" name="pay">
+                                        <input type="radio" name="pay1" v-model="pay_type1" value="df">
                                         <span class="radio-ico"></span>
                                         <p>Дифференцированный</p>
                                     </div>
                                     <div class="calculator-btn">
-                                        <a href="#" class="second-btn">Расчитать</a>
+                                         <a @click.prevent="calcForm2" class="second-btn">Расчитать</a>
                                     </div>
+                                     <h4 style="padding-top: 30px;padding-bottom: 0" v-show="form2_result!='NaN' & form2_result" class="calculator-title">Ежемесячный платеж составит  [[form2_result]] [[currency_sign]]</h4>
+
                                 </div>
                             </form>
                         </div>
@@ -222,17 +224,24 @@
             delimiters: ['[[', ']]'],
             el: '#app',
             data: {
-                total_cost:300000,
+                total_cost:'',
                 total_credit_cost:'',
+                total_credit_cost1:'',
                 credit_len: 'm',
+                credit_len1: 'm',
                 first_money:'0',
                 currency:'RUB',
                 currency_sign:'₽',
-                credit_time:6,
-                credit_time_for_calc:6,
-                credit_percent:20,
-                pay_type:'df',
+                credit_time:'',
+                credit_time1:'',
+                credit_time_for_calc:'',
+                credit_time_for_calc1:'',
+                credit_percent:'',
+                credit_percent1:'',
+                pay_type:'an',
+                pay_type1:'an',
                 form1_result:'',
+                form2_result:'',
                 form1_result_df:[
 
                 ]
@@ -256,11 +265,28 @@
                     }
 
                 },
+                credit_len1: function (val) {
+                    console.log(val)
+                    if (val === 'y'){
+                        this.credit_time_for_calc1 = this.credit_time1*12
+                    }else {
+                        this.credit_time_for_calc1 = this.credit_time1
+                    }
+
+                },
                 credit_time: function (val) {
                     if (this.credit_len === 'y'){
                         this.credit_time_for_calc = val*12
                     }else {
                         this.credit_time_for_calc = val
+                    }
+
+                },
+                credit_time1: function (val) {
+                    if (this.credit_len === 'y'){
+                        this.credit_time_for_calc1 = val*12
+                    }else {
+                        this.credit_time_for_calc1 = val
                     }
 
                 }
@@ -277,6 +303,7 @@
             methods:{
                 calcForm1(){
                     this.form1_result_df=[]
+                    this.form1_result=''
                     if (this.pay_type==='an'){
                         let monthPercent = this.credit_percent / 12 / 100
                     let coefficient = monthPercent * ((1 + monthPercent) ** this.credit_time_for_calc) / ((1+ monthPercent) ** this.credit_time_for_calc-1)
@@ -297,13 +324,34 @@
                              remain = parseInt((remain - main_payment).toFixed(2))
                              this.form1_result_df.push({'c1':main_payment,'c2':remain,'c3':percent,'c4':payment})
                             }
-
-
                      }
+                },
+                calcForm2(){
+                    this.form1_result_df=[]
+                    this.form1_result=''
+                    this.form2_result=''
+                    if (this.pay_type1==='an'){
+                        let monthPercent = this.credit_percent1 / 12 / 100
+                    let coefficient = monthPercent * ((1 + monthPercent) ** this.credit_time_for_calc1) / ((1+ monthPercent) ** this.credit_time_for_calc1-1)
+                    this.form2_result = (coefficient * this.total_credit_cost1).toFixed(2)
+                    }
 
-
+                     if (this.pay_type1==='df'){
+                         let main_payment = parseFloat((this.total_credit_cost1 / this.credit_time_for_calc1).toFixed(2))
+                         console.log(main_payment)
+                         let monthPercent = parseInt(this.credit_percent1) * 31 / 365
+                         console.log(monthPercent)
+                         let remain =this.total_credit_cost1
+                         let percent = 0
+                         let payment = 0
+                         for (i = 1; i <= this.credit_time_for_calc1; i++) {
+                             percent = (remain * monthPercent /100).toFixed(2)
+                             payment = (parseFloat(main_payment )+ parseFloat(percent)).toFixed(2)
+                             remain = parseInt((remain - main_payment).toFixed(2))
+                             this.form1_result_df.push({'c1':main_payment,'c2':remain,'c3':percent,'c4':payment})
+                            }
+                     }
                 }
-
             },
         })
     </script>

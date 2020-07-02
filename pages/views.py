@@ -14,7 +14,7 @@ def index(request):
     pageDescription = ''
     allCategories = Category.objects.all()
     allSubCategories = SubCategory.objects.all()
-    allTowns = Town.objects.all()
+    towns = Town.objects.all()
     allMetros = Metro.objects.all()
 
 
@@ -32,6 +32,7 @@ def add_consultation(request):
         if form.is_valid():
             form.save()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    towns = Town.objects.all()
 def credit_calculator(request):
     return render(request, 'pages/credit-calculator.html', locals())
 
@@ -53,6 +54,7 @@ def jobs(request):
             jobs = Vacancy.objects.filter(is_active=True)
             form = VacancyApplyForm()
             return render(request, 'pages/jobs.html', locals())
+    towns = Town.objects.all()
     jobs = Vacancy.objects.filter(is_active=True)
     form = VacancyApplyForm()
 
@@ -65,15 +67,19 @@ def owners(request):
     return render(request, 'pages/owners.html', locals())
 
 def partners(request):
+    towns = Town.objects.all()
     return render(request, 'pages/partners.html', locals())
 
 def privatization(request):
+    towns = Town.objects.all()
     return render(request, 'pages/privatization.html', locals())
 
 def contacts(request):
+    towns = Town.objects.all()
     return render(request, 'pages/contacts.html', locals())
 
 def contact(request):
+    towns = Town.objects.all()
     return render(request, 'pages/contact.html', locals())
 
 def sell(request):
@@ -89,11 +95,13 @@ def sell(request):
         else:
             print(form.errors)
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    towns = Town.objects.all()
     sellForm = SellForm()
     subcategories = SubCategory.objects.all()
     return render(request, 'pages/sell.html', locals())
 
 def estimate(request):
+    towns = Town.objects.all()
     sellForm = SellForm()
     categories = Category.objects.all()
     return render(request, 'pages/estimate.html', locals())
