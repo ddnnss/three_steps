@@ -38,7 +38,6 @@ class AdsAdmin(admin.ModelAdmin):
         "is_hot",
         "created_at",
         "updated_at",
-
     )
 
 

@@ -171,7 +171,7 @@ class Ads(models.Model):
     created = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Добавил')
     number = models.CharField('Номер объекта', max_length=255, blank=True, null=True, editable=False)
     name = models.CharField('Заголовок', blank=False, max_length=255, null=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True,verbose_name='Тип недвижимости')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True,verbose_name='Тип недвижимости', editable=False)
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, blank=False, null=True,verbose_name='Под тип недвижимости')
     metro = models.ForeignKey(Metro, on_delete=models.CASCADE, blank=True, null=True,verbose_name='Метро')
     is_new_building = models.BooleanField('Новострой ?', default=False)
