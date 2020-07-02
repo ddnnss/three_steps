@@ -21,6 +21,10 @@
         .select-text-alt{
             cursor: pointer;
         }
+        .openOverlay{
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -29,6 +33,7 @@
     {% block content %}
     {% endblock %}
     {% include 'footer.html' %}
+
 </div>
 {% block js %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

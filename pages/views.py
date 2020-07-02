@@ -105,7 +105,17 @@ def robots(request):
 def customhandler404(request, exception, template_name='404.html'):
     return render(request, 'pages/404.html', None,None,status=404)
 
-
+def new_callback(request):
+    request_unicode = request.body.decode('utf-8')
+    request_body = json.loads(request_unicode)
+    print(request_body)
+    ad = Ads.objects.get(number=request_body['number'])
+    Callback.objects.create(name=request_body['name'],
+                            phone=request_body['phone'],
+                            time=request_body['time'],
+                            ads=ad
+                            )
+    return JsonResponse({'result':'ok'}, safe=False)
 
 def get_info(request):
     request_unicode = request.body.decode('utf-8')
@@ -162,6 +172,20 @@ def searchIt(request):
     print(allAds)
     allAds = allAds.filter(Q(price__gte=request_body['start_price']) & Q(price__lte=request_body['end_price']))
 
+    if request_body['square_total_from'] !='' and request_body['square_total_to'] !='':
+        allAds = allAds.filter(Q(square_total__gte=request_body['square_total_from']) & Q(square_total__lte=request_body['square_total_to']))
+    elif request_body['square_total_from'] !='' and request_body['square_total_to'] =='':
+        allAds = allAds.filter(square_total__gte=request_body['square_total_from'])
+    elif request_body['square_total_from'] =='' and request_body['square_total_to'] !='':
+        allAds = allAds.filter(square_total__lte=request_body['square_total_to'])
+
+    if request_body['square_kitchen_from'] !='' and request_body['square_kitchen_to'] !='':
+        allAds = allAds.filter(Q(square_kitchen__gte=request_body['square_kitchen_from']) & Q(square_kitchen__lte=request_body['square_kitchen_to']))
+    elif request_body['square_kitchen_from'] !='' and request_body['square_kitchen_to'] =='':
+        allAds = allAds.filter(square_kitchen__gte=request_body['square_kitchen_from'])
+    elif request_body['square_kitchen_from'] =='' and request_body['square_kitchen_to'] !='':
+        allAds = allAds.filter(square_kitchen__lte=request_body['square_kitchen_to'])
+
     if request_body['rooms'] !='':
         print('rooms',request_body['rooms'])
         allAds = allAds.filter(rooms__exact=request_body['rooms'])
@@ -186,6 +210,9 @@ def searchIt(request):
         allAds = allAds.filter(house_type__exact=request_body['house_type'])
 
     print(allAds)
+
+
+
 
     articlePaginator = Paginator(allAds, 10)
     try:

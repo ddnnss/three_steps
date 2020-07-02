@@ -20,5 +20,6 @@ urlpatterns = [
 
     path('get_info', views.get_info, name='get_info'),
     path('searchIt', views.searchIt, name='searchIt'),
+    path('new_callback', views.new_callback, name='new_callback'),
 
 ]

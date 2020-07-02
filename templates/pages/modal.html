@@ -1,0 +1,45 @@
+<div :class="{openOverlay:modal_show}" class="modal-overlay"></div>
+<div :class="{open:modal_show}" class="modal" >
+		<div class="modal-content">
+			<div @click.prevent="modal_show=false" class="modal-close">
+				<svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 3.14632L20.6836 0.766479L11.5 10.2015L2.31643 0.766479L0 3.14632L9.18357 12.5813L0 22.0163L2.31643 24.3961L11.5 14.9611L20.6836 24.3961L23 22.0163L13.8164 12.5813L23 3.14632Z" fill="#8B8B8B"/></svg>
+			</div>
+			<form v-show="!modal_send" @submit.prevent="sendModal">
+				<div class="modal-top">
+					<h3 class="modal-title">Договориться о просмотре</h3>
+				</div>
+				<div class="modal-wrap">
+					<div class="input-block">
+						<label for="c-1">Имя</label>
+						<div class="input-wrap">
+							<input id="c-1" type="text" required v-model="modal_name" placeholder="Имя">
+						</div>
+					</div>
+					<div class="input-block">
+						<label for="c-2">Контактный телефон <span>*</span></label>
+						<div class="input-wrap">
+							<input id="c-2" type="tel" required v-model="modal_phone" placeholder="+7">
+						</div>
+					</div>
+					<div class="input-block">
+						<label for="c-3">В какое время вам позвонить ?</label>
+						<div class="input-wrap">
+							<input id="c-3" type="text" v-model="modal_time" placeholder="00:00">
+						</div>
+					</div>
+					<button type="submit" class="second-btn">Отправить</button>
+					<div class="modal-text">
+						<p>Заполнив данные, я подтверждаю, что ознакомлен и согласен с условиями <a href="#">политики конфиденциальности</a>.</p>
+					</div>
+				</div>
+			</form>
+            <div v-show="modal_send"class="">
+               <div class="modal-top">
+					<h3 class="modal-title">Заявка отправлена</h3>
+				</div>
+                <div class="modal-text">
+						<p>С Вами свяжутся в ближайшее время</p>
+					</div>
+            </div>
+		</div>
+	</div>

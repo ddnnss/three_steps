@@ -33,6 +33,7 @@ class SubCategory(models.Model):
     show_square_kitchen = models.BooleanField('Показывать площадь кухни в форме на главной?', default=True)
     show_building_type = models.BooleanField('Показывать новострой/вторичка главной?', default=True)
     show_square_land = models.BooleanField('Показывать площадь земли в форме на главной?', default=False)
+    show_total_square = models.BooleanField('Показывать общую площадь  в форме на главной?', default=True)
     show_floors = models.BooleanField('Показывать этажи/этажность в форме на главной?', default=True)
     show_rooms = models.BooleanField('Показывать кол-во комнат в форме на главной?', default=True)
     show_house_type = models.BooleanField('Показывать тип постройки в форме на главной?', default=True)

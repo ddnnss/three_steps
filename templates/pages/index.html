@@ -148,6 +148,7 @@
                         </div>
                         <div class="main-block">
                             <div class="main-block__row">
+
                                 <div v-show="show_house_type" class="main-col">
                                     <div class="input-block">
                                         <div class="select">
@@ -228,25 +229,47 @@
                                         </div>
                                     </div>
                                 </div><!-- col(7) floors-->
-                                <div  v-show="show_square_kitchen"  class="main-col">
+                                <div   class="main-col">
                                     <div class="input-block">
                                         <div class="input-wrap">
-                                            <input type="number" name="square_total" placeholder="Общая площадь" v-model="square_total">
+                                            <input type="number" name="square_total" placeholder="Общая площадь от" v-model="square_total_from">
                                         </div>
                                     </div>
 
-                                </div><!-- col(7) kitchen-->
+                                </div><!-- col(7) square_total-->
+                                 <div   class="main-col">
+                                    <div class="input-block">
+                                        <div class="input-wrap">
+                                            <input type="number" name="square_total" placeholder="Общая площадь до" v-model="square_total_to">
+                                        </div>
+                                    </div>
+
+                                </div><!-- col(7) square_total-->
                                 <div  v-show="show_square_kitchen"  class="main-col">
                                     <div class="input-block">
                                         <div class="input-wrap">
-                                            <input type="number" name="square_kitchen" placeholder="Площадь кухни" v-model="square_kitchen">
+                                            <input type="number" name="square_kitchen" placeholder="Площадь кухни от" v-model="square_kitchen_from">
+                                        </div>
+                                    </div>
+                                </div><!-- col(7) kitchen-->
+                                  <div  v-show="show_square_kitchen"  class="main-col">
+                                    <div class="input-block">
+                                        <div class="input-wrap">
+                                            <input type="number" name="square_kitchen" placeholder="Площадь кухни до" v-model="square_kitchen_to">
                                         </div>
                                     </div>
                                 </div><!-- col(7) kitchen-->
                                 <div  v-show="show_square_land"  class="main-col">
                                     <div class="input-block">
                                         <div class="input-wrap">
-                                            <input type="number" name="square_land"  placeholder="Площадь земли" v-model="square_land">
+                                            <input type="number" name="square_land"  placeholder="Площадь земли от" v-model="square_land_from">
+                                        </div>
+                                    </div>
+                                </div><!-- col(7) land-->
+                                <div  v-show="show_square_land"  class="main-col">
+                                    <div class="input-block">
+                                        <div class="input-wrap">
+                                            <input type="number" name="square_land"  placeholder="Площадь земли до" v-model="square_land_to">
                                         </div>
                                     </div>
                                 </div><!-- col(7) land-->
@@ -334,7 +357,7 @@
                             <span class="advertisements-address">[[ad.address]]</span>
                             <span class="advertisements-date">[[ad.date]]</span>
                             <div class="advertisements-btns">
-                                <a href="#modal-agreement" class="button-modal second-btn">Детали</a>
+                                <a @click.prevent="modal_ads_number=ad.number, modal_show=true,modal_send=false" class="button-modal second-btn">Детали</a>
                                 <a style="cursor: pointer" @click.prevent="openAd(ad.number)" class="main-btn">Показать номер</a>
                             </div>
                         </div>
@@ -380,6 +403,7 @@
         </section>
         <!-- end about -->
     </div>
+     {% include 'pages/modal.html' %}
 {% endblock %}
 
 {% block js %}
@@ -392,6 +416,12 @@
             data: {
                 page:1,
                 pages:1,
+                modal_send:false,
+                modal_show:false,
+                modal_name:'',
+                modal_phone:'',
+                modal_time:'',
+                modal_ads_number:'',
                 cat:'',
                 order:'-created_at',
                 subcat:'',
@@ -407,9 +437,12 @@
                 end_price:'',
                 floor:'',
                 floors:'',
-                square_total:'',
-                square_kitchen:'',
-                square_land:'',
+                square_total_from:'',
+                square_total_to:'',
+                square_kitchen_from:'',
+                square_kitchen_to:'',
+                square_land_from:'',
+                square_land_to:'',
                 show_square_kitchen: false,
                 show_building_type: false,
                 show_square_land: false,
@@ -455,6 +488,29 @@
                 }
             },
             methods:{
+                sendModal(){
+                    let body = {
+                        'number':this.modal_ads_number,
+                        'time':this.modal_time,
+                        'name':this.modal_name,
+                        'phone':this.modal_phone,
+
+                    }
+                    fetch('{% url 'new_callback' %}', {
+                        method: 'post',
+                        body: JSON.stringify(body),
+                        headers: { "X-CSRFToken": '{{  csrf_token }}' },
+                        credentials: 'same-origin'
+                    }).then(res=>res.json())
+                        .then(res => {
+                            console.log(res)
+                            if(res['result']==='ok'){
+                                this.modal_send=true
+                            }
+
+                            })
+                    }
+                ,
                 changeOrder(){
                     if (this.order === '-created_at'){
                         this.order = 'created_at'
@@ -549,9 +605,12 @@
                         'end_price':this.end_price,
                         'floor':this.floor,
                         'floors':this.floors,
-                        'square_total':this.square_total,
-                        'square_kitchen':this.square_kitchen,
-                        'square_land':this.square_land
+                        'square_total_from':this.square_total_from,
+                        'square_total_to':this.square_total_to,
+                        'square_kitchen_from':this.square_kitchen_from,
+                        'square_kitchen_to':this.square_kitchen_to,
+                        'square_land_from':this.square_land_from,
+                        'square_land_to':this.square_land_to
                     }
                     fetch('{% url 'searchIt' %}', {
                         method: 'post',
@@ -561,23 +620,16 @@
                     }).then(res=>res.json())
                         .then(res => {
                             console.log(res)
-
                             this.ads = res['result']
                             this.pages = res['pages']
                             this.page = res['page']
-
                             }).then( tt => {
                                   console.log('then')
-                        slid()
-                    }
-
+                            slid()
+                            }
                     )
-
-
                 }
-
             },
-
         })
     </script>
 

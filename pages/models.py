@@ -1,5 +1,5 @@
 from django.db import models
-
+from ads.models import Ads
 class Vacancy(models.Model):
     title = models.CharField('Название вакансии', max_length=255,blank=False,null=True)
     option1 = models.CharField('Опция вакансии', max_length=255,blank=True,null=True,
@@ -63,4 +63,16 @@ class Consultation(models.Model):
         verbose_name_plural = "Заявки на консультацию"
 
 class Callback(models.Model):
-    pass
+    name = models.CharField('Контактное лицо ', blank=True, max_length=255, null=True)
+    phone = models.CharField('Телефон ', blank=True, max_length=255, null=True)
+    time = models.CharField('Время ', blank=True, max_length=255, null=True)
+    created_at = models.DateTimeField('Добавлено', auto_now_add=True, null=True)
+    ads = models.ForeignKey(Ads,on_delete=models.CASCADE,blank=True,null=True,verbose_name='По поводу')
+    is_viewed = models.BooleanField('Обработана ?', default=False)
+
+    def __str__(self):
+        return f"Заявка на обратный звонок"
+
+    class Meta:
+        verbose_name = "Заявка на обратный звонок"
+        verbose_name_plural = "Заявки на обратный звонок"

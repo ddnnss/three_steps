@@ -39,7 +39,7 @@
 						<li><b>Email:</b> <a href="#">{{ ads.created.email }}</a></li>
 					</ul>
 					<div class="post-btns">
-						<a href="#modal-agreement" class="second-btn button-modal">Хочу посмотреть</a>
+						<a @click.prevent="modal_ads_number='{{ ads.number }}', modal_show=true, modal_send=false" class="second-btn button-modal">Хочу посмотреть</a>
 						<a href="#" class="main-btn">Заявка на кредит</a>
 					</div>
 				</div>
@@ -79,6 +79,7 @@
 		</div>
 	</section>
 	<!-- end location -->
+     {% include 'pages/modal.html' %}
 {% endblock %}
 
 {% block js %}
@@ -128,5 +129,47 @@ function init() {
 
         });
 }
+    </script>
+     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            delimiters: ['[[', ']]'],
+            el: '#app',
+            data: {
+                modal_send:false,
+                modal_show:false,
+                modal_name:'',
+                modal_phone:'',
+                modal_time:'',
+                modal_ads_number:'',
+
+            },
+
+
+            methods:{
+                sendModal(){
+                    let body = {
+                        'number':this.modal_ads_number,
+                        'time':this.modal_time,
+                        'name':this.modal_name,
+                        'phone':this.modal_phone,
+
+                    }
+                    fetch('{% url 'new_callback' %}', {
+                        method: 'post',
+                        body: JSON.stringify(body),
+                        headers: { "X-CSRFToken": '{{  csrf_token }}' },
+                        credentials: 'same-origin'
+                    }).then(res=>res.json())
+                        .then(res => {
+                            console.log(res)
+                            if(res['result']==='ok'){
+                                this.modal_send=true
+                            }
+                            })
+                    }
+
+            },
+        })
     </script>
 {% endblock %}
