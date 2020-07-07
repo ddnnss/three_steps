@@ -178,7 +178,12 @@ def searchIt(request):
                                 town__name_slug=request_body['town'],
                                 currency_type=request_body['currency']).order_by(request_body['order'])
     print(allAds)
-    allAds = allAds.filter(Q(price__gte=request_body['start_price']) & Q(price__lte=request_body['end_price']))
+    if request_body['start_price'] == '':
+        start_price = 0
+    else:
+        start_price = request_body['start_price']
+
+    allAds = allAds.filter(Q(price__gte=start_price) & Q(price__lte=request_body['end_price']))
 
     if request_body['square_total_from'] !='' and request_body['square_total_to'] !='':
         allAds = allAds.filter(Q(square_total__gte=request_body['square_total_from']) & Q(square_total__lte=request_body['square_total_to']))
@@ -216,6 +221,9 @@ def searchIt(request):
     if request_body['house_type'] != '':
         print('house_type', request_body['house_type'])
         allAds = allAds.filter(house_type__exact=request_body['house_type'])
+
+    if request_body['metro'] != '0':
+        allAds = allAds.filter(metro__exact=request_body['metro'])
 
     print(allAds)
 

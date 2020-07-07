@@ -71,8 +71,8 @@
                                                 </div>
                                                 <div class="select-info">
                                                     <ul>
-                                                        <li @click="credit_len1='m'">мес</li>
-                                                        <li @click="credit_len1='y'">лет</li>
+                                                        <li @click="credit_len='m'">мес</li>
+                                                        <li @click="credit_len='y'">лет</li>
 
                                                     </ul>
                                                 </div>
@@ -101,7 +101,7 @@
                                     <div class="calculator-btn">
                                         <a @click.prevent="calcForm1" class="second-btn">Расчитать</a>
                                     </div>
-                                    <h4 style="padding-top: 30px;padding-bottom: 0" v-show="form1_result!='NaN' & form1_result" class="calculator-title">Ежемесячный платеж составит  [[form1_result]] [[currency_sign]]</h4>
+                                    <h4 style="padding-top: 30px;padding-bottom: 0" v-show="form1_result" class="calculator-title">Ежемесячный платеж составит  [[form1_result]] [[currency_sign]]</h4>
 
                                 </div>
                             </form>
@@ -164,7 +164,7 @@
                                     <div class="calculator-btn">
                                          <a @click.prevent="calcForm2" class="second-btn">Расчитать</a>
                                     </div>
-                                     <h4 style="padding-top: 30px;padding-bottom: 0" v-show="form2_result!='NaN' & form2_result" class="calculator-title">Ежемесячный платеж составит  [[form2_result]] [[currency_sign]]</h4>
+                                     <h4 style="padding-top: 30px;padding-bottom: 0" v-show="form2_result" class="calculator-title">Ежемесячный платеж составит  [[form2_result]] [[currency_sign]]</h4>
 
                                 </div>
                             </form>
@@ -257,22 +257,23 @@
 
                 },
                 credit_len: function (val) {
-                    console.log(val)
+                    console.log('credit_time_for_calc',val)
                     if (val === 'y'){
                         this.credit_time_for_calc = this.credit_time*12
                     }else {
                         this.credit_time_for_calc = this.credit_time
                     }
+                    console.log('credit_time_for_calc',this.credit_time_for_calc)
 
                 },
                 credit_len1: function (val) {
-                    console.log(val)
+                    console.log('credit_time_for_calc1',val)
                     if (val === 'y'){
                         this.credit_time_for_calc1 = this.credit_time1*12
                     }else {
                         this.credit_time_for_calc1 = this.credit_time1
                     }
-
+                    console.log('credit_time_for_calc1',this.credit_time_for_calc1)
                 },
                 credit_time: function (val) {
                     if (this.credit_len === 'y'){
