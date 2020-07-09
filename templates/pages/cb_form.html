@@ -16,7 +16,7 @@
                     </div>
                     <div class="input-block sell-wrap__col">
                         <div class="input-wrap">
-                            <input type="tel" name="{{ consult_form.phone.name }}" placeholder="Контактный телефон">
+                            <input type="tel" required name="{{ consult_form.phone.name }}" placeholder="Контактный телефон">
                         </div>
                     </div>
                     <div class="input-block sell-wrap__col">
@@ -61,14 +61,14 @@
                             <div class="select-info">
                                 <ul>
                                     {% for category in categories %}
-                                        <li onclick="setCategory('{{ category.name }}')">{{ category.name }}</li>
+                                        <li data-slug="{{ category.name_slug }}" @click='changeCat'>{{ category.name }}</li>
                                     {% endfor %}
                                 </ul>
                             </div>
-                            <input id="category" type="hidden" name="{{ consult_form.category.name }}"  value="0">
+                            <input id="category" type="hidden" name="{{ consult_form.category.name }}" v-model="cat_name"  value="0">
                         </div>
                     </div>
-                    <div class="input-block sell-wrap__col">
+                    <div v-if="show_rooms" class="input-block sell-wrap__col">
                         <label for="q-1">Количество комнат</label>
                         <div class="input-quantity">
                             <div class="quantity-col">
@@ -98,7 +98,8 @@
         </div>
         <div class="sell-col" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
             <div class="sell-wrap">
-                <label for="q-2">Этаж/Этажность</label>
+                <div v-if="show_floor" >
+                    <label for="q-2">Этаж/Этажность</label>
                 <div class="sell-wrap__row">
                     <div class="input-block sell-wrap__col">
                         <div class="input-wrap">
@@ -111,13 +112,15 @@
                         </div>
                     </div>
                 </div>
+                </div>
+
                 <div class="sell-wrap__row">
                     <div class="input-block sell-wrap__col">
                         <div class="input-wrap">
                             <input type="text" name="{{ consult_form.square_total.name }}" placeholder="Общая площадь (м2)">
                         </div>
                     </div>
-                    <div class="input-block sell-wrap__col">
+                    <div v-if="show_kitchen" class="input-block sell-wrap__col">
                         <div class="input-wrap">
                             <input type="text" name="{{ consult_form.square_kitchen.name }}" placeholder="Площадь кухни (м2)">
                         </div>

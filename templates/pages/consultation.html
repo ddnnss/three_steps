@@ -26,4 +26,49 @@
 
 {% block js %}
 {{ block.super }}
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            delimiters: ['[[', ']]'],
+            el: '#app',
+            data: {
+                cat_name:'zhilaya-nedvizhimost',
+                show_kitchen:true,
+                show_rooms:true,
+                show_floor:true
+
+            },watch: {
+                cat_name: function (val) {
+                    console.log(val)
+                    if (val === 'zemelnyij-uchastok'){
+                        this.show_kitchen=false
+                        this.show_rooms=false
+                        this.show_floor=false
+                    }
+                    if (val === 'kommercheskaya-nedvizhimost'){
+                        this.show_kitchen=false
+                        this.show_rooms=false
+                        this.show_floor=true
+                    }
+                    if (val === 'zhilaya-nedvizhimost'){
+                        this.show_kitchen=true
+                        this.show_rooms=true
+                        this.show_floor=true
+                    }
+                    if (val === 'nezhilaya-nedvizhimost'){
+                        this.show_kitchen=false
+                        this.show_rooms=false
+                        this.show_floor=false
+                    }
+                }
+            },
+            methods:{
+                changeCat(){
+                    this.cat_name = event.target.dataset.slug
+                },
+
+
+            },
+        })
+    </script>
 {% endblock %}
