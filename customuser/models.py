@@ -38,6 +38,8 @@ class User(AbstractUser):
     email = models.EmailField('эл. почта', unique=True)
     phone = models.CharField('Телефон', max_length=50, blank=True, null=True)
     avatar = models.ImageField('Фото профиля', upload_to='avatar/', blank=True)
+    is_moderator = models.BooleanField('Модератор', default=False)
+    is_test = models.BooleanField('Стажер', default=False)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = UserManager()
