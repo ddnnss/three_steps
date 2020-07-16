@@ -19,11 +19,9 @@ class CatAdmin(admin.ModelAdmin):
 class AdsAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         self.exclude = []
-        if not request.user.is_superuser or not request.user.is_moderator:
+        if request.user.is_test:
             self.exclude.append('is_checked')  # here!
             self.exclude.append('is_publish')  # here!
-
-
         return super(AdsAdmin, self).get_form(request, obj, **kwargs)
     inlines = [AdsImageInline]
     list_display = [
