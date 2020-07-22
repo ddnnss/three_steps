@@ -246,7 +246,7 @@ class Ads(models.Model):
                f'{self.floor_total  if self.floor_total else "" }, '
 
     def split_descrition(self):
-        print(self.description.split('\n'))
+
         description = ''
         for line in self.description.split('\n'):
             description += f'<p>{line}</p>'

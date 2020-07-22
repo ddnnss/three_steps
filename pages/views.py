@@ -84,7 +84,7 @@ def contact(request):
 
 def sell(request):
     if request.POST:
-        print(request.POST)
+
         form = SellForm(request.POST)
         new_ads = None
         if form.is_valid():
@@ -93,7 +93,8 @@ def sell(request):
                 for f in request.FILES.getlist('images'):
                     AdsImage.objects.create(ads_id=new_ads.id, image=f).save()
         else:
-            print(form.errors)
+            pass
+
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     towns = Town.objects.all()
     sellForm = SellForm()
@@ -116,7 +117,7 @@ def customhandler404(request, exception, template_name='404.html'):
 def new_callback(request):
     request_unicode = request.body.decode('utf-8')
     request_body = json.loads(request_unicode)
-    print(request_body)
+
     ad = Ads.objects.get(number=request_body['number'])
     Callback.objects.create(name=request_body['name'],
                             phone=request_body['phone'],
@@ -128,7 +129,7 @@ def new_callback(request):
 def get_info(request):
     request_unicode = request.body.decode('utf-8')
     request_body = json.loads(request_unicode)
-    print(request_body)
+
     if request_body['action'] == 'getSubcats':
         cat = Category.objects.get(name_slug=request_body['value'])
         subcats = []
@@ -137,7 +138,7 @@ def get_info(request):
                 'id':subcat.id,
                 'type':subcat.name
             })
-        print(subcats)
+
         return JsonResponse(subcats, safe=False)
     if request_body['action'] == 'getMetros':
         town = Town.objects.get(name_slug=request_body['value'])
@@ -149,7 +150,7 @@ def get_info(request):
                 'id':metro.id,
                 'type':metro.name
             })
-        print(metros)
+
         return JsonResponse(metros, safe=False)
 
     if request_body['action'] == 'getSubcatInfo':
@@ -163,13 +164,13 @@ def get_info(request):
                 'show_rooms': subcategory.show_rooms,
                 'show_house_type': subcategory.show_house_type
                  })
-        print(subcatInfo)
+
         return JsonResponse(subcatInfo, safe=False)
 
 def searchIt(request):
     request_unicode = request.body.decode('utf-8')
     request_body = json.loads(request_unicode)
-    print(request_body)
+
     result=[]
     filterAds= False
     allAds = Ads.objects.filter(is_publish=True,
@@ -177,7 +178,7 @@ def searchIt(request):
                                 subcategory_id=request_body['subcat'],
                                 town__name_slug=request_body['town'],
                                 currency_type=request_body['currency']).order_by(request_body['order'])
-    print(allAds)
+
     if request_body['start_price'] == '':
         start_price = 0
     else:
@@ -200,32 +201,32 @@ def searchIt(request):
         allAds = allAds.filter(square_kitchen__lte=request_body['square_kitchen_to'])
 
     if request_body['rooms'] !='':
-        print('rooms',request_body['rooms'])
+
         allAds = allAds.filter(rooms__exact=request_body['rooms'])
 
     if request_body['floor'] != '':
-        print('floor', request_body['floor'])
+
         allAds = allAds.filter(floor__exact=request_body['floor'])
 
     if request_body['floors'] != '':
-        print('floors', request_body['floors'])
+
         allAds = allAds.filter(floor_total__exact=request_body['floors'])
 
 
-    print('building_type', request_body['building_type'])
+
     if request_body['building_type'] == 'old':
         allAds = allAds.filter(is_new_building=False)
     if request_body['building_type'] == 'new':
         allAds = allAds.filter(is_new_building=True)
 
     if request_body['house_type'] != '':
-        print('house_type', request_body['house_type'])
+
         allAds = allAds.filter(house_type__exact=request_body['house_type'])
 
     if request_body['metro'] != '0':
         allAds = allAds.filter(metro__exact=request_body['metro'])
 
-    print(allAds)
+
 
 
 
@@ -237,7 +238,7 @@ def searchIt(request):
         allAdsPaginator = articlePaginator.page(1)
     except EmptyPage:
         allAdsPaginator = articlePaginator.page(articlePaginator.num_pages)
-    print('articlePaginator.num_pages',articlePaginator.num_pages)
+
     for ad in allAdsPaginator:
         images=[]
         for img in ad.get_images():

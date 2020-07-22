@@ -48,25 +48,6 @@ def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
 
-def change_avatar(request):
-    form = ChangeAvatar(request.POST, request.FILES, instance=request.user)
-    if form.is_valid():
-        form.save()
-
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-def new_bet(request):
-    form = NewBet(request.POST, request.FILES)
-    if request.user.balance >= float(request.POST.get('amount')):
-        print('balance is ok')
-        if form.is_valid():
-            new_bet = form.save(commit=False)
-            new_bet.user = request.user
-            new_bet.save()
-        else:
-            print('balance is bad')
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
 def password_recovery(request):
     if request.POST:
         email = request.POST.get('email')
