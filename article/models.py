@@ -51,7 +51,7 @@ class Article(models.Model):
         super(Article, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return f'/article/{self.name_slug}/'
+        return f'/articles/{self.name_slug}/'
 
     def __str__(self):
         return f'id: {self.id} | Статья : {self.name}'

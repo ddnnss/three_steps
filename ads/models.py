@@ -208,8 +208,8 @@ class Ads(models.Model):
     created_at = models.DateTimeField('Добавлено', auto_now_add=True)
     updated_at = models.DateTimeField('Изменено', auto_now=True)
 
-    # def get_absolute_url(self):
-    #     return f'/article/{self.name_slug}/'
+    def get_absolute_url(self):
+        return f'/ads/{self.number}/'
     # def save(self, *args, **kwargs):
     #     self.number = f'01-{10000 + self.id}'
     #     super(Ads, self).save(*args, **kwargs)

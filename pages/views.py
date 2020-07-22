@@ -107,7 +107,7 @@ def estimate(request):
     return render(request, 'pages/estimate.html', locals())
 
 def robots(request):
-    robotsTxt = f"User-agent: *\nDisallow: /admin/\nHost: https://ugscash.ru/\nSitemap: https://ugscash.ru/sitemap.xml"
+    robotsTxt = f"User-agent: *\nDisallow: /admin/\nHost: https://www.3stypeni.ru//\nSitemap: https://www.3stypeni.ru/sitemap.xml"
     return HttpResponse(robotsTxt, content_type="text/plain")
 
 def customhandler404(request, exception, template_name='404.html'):
