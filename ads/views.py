@@ -17,7 +17,7 @@ def feed(request,):
 
     t = loader.get_template('pages/feed.xml')
     c = template_vars
-    return HttpResponse(t.render(c))
+    return HttpResponse(t.render(c),content_type='text/xml')
 
 
 
