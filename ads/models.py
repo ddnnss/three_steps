@@ -168,6 +168,56 @@ class Ads(models.Model):
         (USD, 'Доллары'),
     ]
 
+    f1 = 'F1'
+    f2 = 'F2'
+    f3 = 'F3'
+    f4 = 'F4'
+    f5 = 'F5'
+    f6 = 'F6'
+    f7 = 'F7'
+    f8 = 'F8'
+    f9 = 'F9'
+    f10 = 'F10'
+    f11 = 'F11'
+
+    FEED_CATEGORY_CHOICES = [
+        (f1, 'дача'),
+        (f2, 'коттедж'),
+        (f3, 'дом'),
+        (f4, 'дом с участком'),
+        (f5, 'участок'),
+        (f6, 'часть дома'),
+        (f7, 'квартира'),
+        (f8, 'комната'),
+        (f9, 'таунхаус'),
+        (f10, 'дуплекс'),
+        (f11, 'гараж'),
+
+    ]
+
+    s1 = 'S1'
+    s2 = 'S2'
+    s3 = 'S3'
+    s4 = 'S4'
+    s5 = 'S5'
+    s6 = 'S6'
+
+
+    FEED_STATUS_CHOICES = [
+        (s1, 'первичная продажа'),
+        (s2, 'продажа от застройщика'),
+        (s3, 'переуступка'),
+        (s4, 'прямая продажа'),
+        (s5, 'первичная продажа вторички'),
+        (s6, 'встречная продажа'),
+
+
+
+
+    ]
+
+
+
     created = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Добавил')
     number = models.CharField('Номер объекта', max_length=255, blank=True, null=True, editable=False)
     name = models.CharField('Заголовок', blank=False, max_length=255, null=True)
@@ -175,9 +225,14 @@ class Ads(models.Model):
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, blank=False, null=True,verbose_name='Под тип недвижимости')
     metro = models.ForeignKey(Metro, on_delete=models.CASCADE, blank=True, null=True,verbose_name='Метро')
     is_new_building = models.BooleanField('Новострой ?', default=False)
+
     is_checked = models.BooleanField('Проверено ?', default=False)
     is_publish = models.BooleanField('Опубликован ?', default=False)
     is_hot = models.BooleanField('Горячие предложения ?', default=False)
+    built_year = models.CharField('Год сдачи (Для фида)', max_length=255, blank=False, null=True)
+    feed_category = models.CharField('Категория объекта (Для фида)', max_length=20, choices=FEED_CATEGORY_CHOICES, default=f1)
+    feed_deal_status = models.CharField('Тип сделки (Для фида)', max_length=20, choices=FEED_STATUS_CHOICES, default=s1)
+    is_living = models.BooleanField('Жилая? (Для фида)', default=True)
     is_in_ya_feed = models.BooleanField('Выгружать в Яндекс фид ?', default=False)
     action_type = models.CharField('Тип сделки', max_length=20, choices=ACTION_TYPE_CHOICES, default=TO_RENT)
     street = models.CharField('Улица', max_length=255, blank=False, null=True)
@@ -221,11 +276,60 @@ class Ads(models.Model):
              return '₽'
          else:
             return '$'
+    def get_feed_rooms(self):
+        if self.rooms == 'R1':
+            return '1'
+        if self.rooms == 'R2':
+            return '2'
+        if self.rooms == 'R3':
+            return '3'
+        if self.rooms == 'R4':
+            return '4'
+        if self.rooms == 'R5':
+            return '5'
+
+    def get_feed_status(self):
+        if self.feed_deal_status == 'S1':
+            return 'первичная продажа'
+        if self.feed_deal_status == 'S2':
+            return 'продажа от застройщика'
+        if self.feed_deal_status == 'S3':
+            return 'переуступка'
+        if self.feed_deal_status == 'S4':
+            return 'прямая продажа'
+        if self.feed_deal_status == 'S5':
+            return 'первичная продажа вторички'
+        if self.feed_deal_status == 'S5':
+            return 'встречная продажа'
+
     def get_action_type(self):
         if self.action_type == self.TO_RENT:
             return 'Сдается'
         elif self.action_type == self.SELL:
             return 'Продается'
+    def get_feed_cat(self):
+        if self.feed_category == 'F1':
+            return 'дача'
+        if self.feed_category == 'F2':
+            return 'коттедж'
+        if self.feed_category == 'F3':
+            return 'дом'
+        if self.feed_category == 'F4':
+            return 'дом с участком'
+        if self.feed_category == 'F5':
+            return 'участок'
+        if self.feed_category == 'F6':
+            return 'часть дома'
+        if self.feed_category == 'F7':
+            return 'квартира'
+        if self.feed_category == 'F8':
+            return 'комната'
+        if self.feed_category == 'F9':
+            return 'таунхаус'
+        if self.feed_category == 'F10':
+            return 'дуплекс'
+        if self.feed_category == 'F11':
+            return 'гараж'
 
     def get_ads_type(self):
         if self.square_land:
