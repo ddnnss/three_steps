@@ -6,7 +6,8 @@ from django.core.files import File
 from io import BytesIO
 from pytils.translit import slugify
 from PIL import Image
-
+import os
+from uuid import uuid4
 
 
 class Category(models.Model):
@@ -398,6 +399,17 @@ def ads_post_save(sender, instance, created, **kwargs):
 
 post_save.connect(ads_post_save, sender=Ads)
 
+def path_and_rename(instance, filename):
+    upload_to = 'ads/image'
+    ext = filename.split('.')[-1]
+    # get filename
+    if instance.pk:
+        filename = '{}.{}'.format(instance.pk, ext)
+    else:
+        # set filename as random string
+        filename = '{}.{}'.format(uuid4().hex, ext)
+    # return the whole path to the file
+    return os.path.join(upload_to, filename)
 
 class AdsImage(models.Model):
     ads = models.ForeignKey(
@@ -408,7 +420,7 @@ class AdsImage(models.Model):
         verbose_name="Для обьявления",
         related_name='images'
     )
-    image = models.ImageField('Изображение', blank=False, null=True,upload_to='ads/image')
+    image = models.ImageField('Изображение', blank=False, null=True,upload_to=path_and_rename)
     image_thumb = models.ImageField('Изображение', blank=True, null=True,upload_to='ads/image', editable=False)
     image_main = models.ImageField('Изображение', blank=True, null=True,upload_to='ads/image', editable=False)
 
