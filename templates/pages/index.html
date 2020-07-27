@@ -357,8 +357,10 @@
                             <span class="advertisements-address">[[ad.address]]</span>
                             <span class="advertisements-date">[[ad.date]]</span>
                             <div class="advertisements-btns">
-                                <a @click.prevent="modal_ads_number=ad.number, modal_show=true,modal_send=false" class="button-modal second-btn">Детали</a>
-                                <a style="cursor: pointer" @click.prevent="openAd(ad.number)" class="main-btn">Показать номер</a>
+
+
+                                <a @click.prevent="openAd(ad.number)" class="button-modal second-btn">Детали</a>
+                                <a style="cursor: pointer" @click.prevent="modal_ads_number=ad.number, modal_show=true,modal_send=false" class="main-btn">Показать номер</a>
                             </div>
                         </div>
                     </div>
