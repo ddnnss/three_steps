@@ -455,13 +455,16 @@
                 subcats:[],
                 ads:[]
             },
-            mounted: function () {
-                this.$nextTick(function () {
+             mounted: function () {
+                 this.$nextTick(function () {
                     this.cat = '{{ allCategories.first.name_slug }}'
                     this.town = '{{ towns.first.name_slug }}'
-                    this.getInfo('getSubcats','{{ allCategories.first.name_slug }}')
-                    this.getInfo('getMetros','{{ towns.first.name_slug }}')
-                    this.getInfo('getSubcatInfo',this.subcat_id)
+
+
+                   //this.getInfo('getSubcats','{{ allCategories.first.name_slug }}')
+
+                    //this.getInfo('getMetros','{{ towns.first.name_slug }}')
+                   //this.getInfo('getSubcatInfo',this.subcat_id)
                 })
             },
             watch: {
