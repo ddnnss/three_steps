@@ -372,8 +372,7 @@ class Ads(models.Model):
         return f'<p>{self.get_action_type()} {self.get_ads_type()}, {self.town.name} {self.street} {self.street_number}, ' \
                f'{self.get_square()}, {self.get_floors()} {self.get_house_type_display()}</p>' \
                f'{self.split_descrition()}' \
-               f'<p>{self.get_own_years_val()} {self.get_order_type_val()} {self.price} {self.get_currency()}, ' \
-               f'{self.contact_name}, <a href="tel:{self.get_phone()}">{self.contact_phone}</a></p>'
+               f'<p>{self.get_own_years_val()} {self.get_order_type_val()} {self.price} {self.get_currency()}, '
 
     def image_tag(self):
         # used in the admin site model as a "thumbnail"
