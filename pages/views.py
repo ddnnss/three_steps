@@ -10,8 +10,8 @@ from ads.forms import *
 
 
 def index(request):
-    pageTitle = 'Недвижимость в Королеве | Агентство недвижимости Королев - 3 Ступени'
-    pageDescription = ''
+    pageTitle = 'Агентство недвижимости в Москве и области (Королев, Мытищи, Балашиха, Фрязино, Щелково, Пушкино) '
+    pageDescription = 'Купить / Продать / Снять / Сдать недвижимость. Большая база квартир и домов. Работаем быстро и качественно. Агентство недвижимости "ТРИ СТУПЕНИ". Звоните 8 (495) 760-20-58'
     allCategories = Category.objects.all()
     allSubCategories = SubCategory.objects.all()
     towns = Town.objects.all()
@@ -21,6 +21,9 @@ def index(request):
     return render(request, 'pages/index.html', locals())
 
 def consultation(request):
+    pageTitle = 'Помощь в продаже и покупке недвижимости. Консультации и помощь в выборе и оформление документов.  '
+    pageDescription = 'Бесплатная консультация специалистов по недвижимости. Агентство недвижимости "ТРИ СТУПЕНИ" Звоните 8 (495) 760-20-58'
+
     towns = Town.objects.all()
     categories = Category.objects.all()
     consult_form = ConsultationForm()
@@ -34,9 +37,13 @@ def add_consultation(request):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     towns = Town.objects.all()
 def credit_calculator(request):
+    pageTitle = 'Рассчитать стоимость кредита под недвижимость. Онлайн калькулятор'
+    pageDescription = 'Расчет процентной ставки и окупаемости недвижимости. Онлайн калькулятор стоимости кредита. '
     return render(request, 'pages/credit-calculator.html', locals())
 
 def credit_help(request):
+    pageTitle = 'Помощь в оформление кредита на квартиры и дома. Консультация специалиста в сфере недвижимости.'
+    pageDescription = 'Подготовка и помощь в подаче документов на кредит под недвижимость. Агентство недвижимости "ТРИ СТУПЕНИ" Звоните 8 (495) 760-20-58'
     towns = Town.objects.all()
     categories = Category.objects.all()
     consult_form = ConsultationForm()
@@ -54,6 +61,8 @@ def jobs(request):
             jobs = Vacancy.objects.filter(is_active=True)
             form = VacancyApplyForm()
             return render(request, 'pages/jobs.html', locals())
+    pageTitle = 'Работа в агентстве недвижимости "ТРИ СТУПЕНИ"'
+    pageDescription = 'Вакансии для специалистов в сфере недвижимости. Работа для риэлтора. Агентство недвижимости "ТРИ СТУПЕНИ"'
     towns = Town.objects.all()
     jobs = Vacancy.objects.filter(is_active=True)
     form = VacancyApplyForm()
@@ -61,24 +70,34 @@ def jobs(request):
     return render(request, 'pages/jobs.html', locals())
 
 def owners(request):
+    pageTitle = 'Помощь в продаже недвижимости в Москве и области. Предварительная оценка и помощь в подготовке недвижимости на продажу.'
+    pageDescription = 'Работаем по всей Москве и  в таких городах как: Королев, Мытищи, Балашиха, Фрязино, Щелково, Пушкино. Агентство недвижимости "ТРИ СТУПЕНИ" Звоните 8 (495) 760-20-58'
     towns = Town.objects.all()
     categories = Category.objects.all()
     consult_form = ConsultationForm()
     return render(request, 'pages/owners.html', locals())
 
 def partners(request):
+    pageTitle = 'Наши партнеры'
+    pageDescription = 'Агентство недвижимости "ТРИ СТУПЕНИ" Звоните 8 (495) 760-20-58'
     towns = Town.objects.all()
     return render(request, 'pages/partners.html', locals())
 
 def privatization(request):
+    pageTitle = 'Помощь в оформление документов - Приватизация плюсы и минусы.'
+    pageDescription = 'Оформить перепланировку квартиры. Помощь в оформление документов на квартиру (приватизировать квартиру) Агентство недвижимости "ТРИ СТУПЕНИ". Звоните 8 (495) 760-20-58'
     towns = Town.objects.all()
     return render(request, 'pages/privatization.html', locals())
 
 def contacts(request):
+    pageTitle = 'Наши контакты. '
+    pageDescription = 'Агентство недвижимости "ТРИ СТУПЕНИ" Звоните 8 (495) 760-20-58'
     towns = Town.objects.all()
     return render(request, 'pages/contacts.html', locals())
 
 def contact(request):
+    pageTitle = 'Наши контакты. '
+    pageDescription = 'Агентство недвижимости "ТРИ СТУПЕНИ" Звоните 8 (495) 760-20-58'
     towns = Town.objects.all()
     return render(request, 'pages/contact.html', locals())
 
