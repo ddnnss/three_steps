@@ -20,9 +20,18 @@ class AdsAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         self.exclude = []
         if request.user.is_test:
-            self.exclude.append('is_checked')  # here!
-            self.exclude.append('is_publish')  # here!
+            self.exclude.append('is_checked')
+            self.exclude.append('is_publish')
+        # if not request.user.is_superuser or not request.user.is_boss:
+        #     self.exclude.append('contact_phone')
         return super(AdsAdmin, self).get_form(request, obj, **kwargs)
+
+    def get_queryset(self, request):
+        qs = super(AdsAdmin, self).get_queryset(request)
+        if request.user.is_superuser or request.user.is_boss:
+            return qs
+        return qs.filter(created=request.user)
+
     inlines = [AdsImageInline]
     list_display = [
         'image_tag',
@@ -31,7 +40,7 @@ class AdsAdmin(admin.ModelAdmin):
         "created_at",
 
     ]
-    search_fields = ("name", "number")
+    search_fields = ("name", "number","contact_phone")
     list_filter = (
         "is_checked",
         "is_publish",

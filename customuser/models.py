@@ -40,6 +40,7 @@ class User(AbstractUser):
     avatar = models.ImageField('Фото профиля', upload_to='avatar/', blank=True)
     is_moderator = models.BooleanField('Модератор', default=False)
     is_test = models.BooleanField('Стажер', default=False)
+    is_boss = models.BooleanField('Руководитель', default=False)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = UserManager()

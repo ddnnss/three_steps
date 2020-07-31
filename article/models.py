@@ -14,7 +14,7 @@ class Article(models.Model):
 
     name = models.CharField('Название статьи', max_length=120, blank=False, null=True)
     name_slug = models.CharField(max_length=255, blank=True, null=True, editable=False, db_index=True)
-    image = models.ImageField('Изображение превью 200x200)', upload_to='article/', blank=True,null=True)
+    image = models.ImageField('Изображение превью 200x200)', upload_to='article/', blank=False,null=True)
     page_title = models.CharField('Тэг Title', max_length=255, blank=True, null=True)
     page_description = models.TextField('Тэг Description', blank=True, null=True)
 
