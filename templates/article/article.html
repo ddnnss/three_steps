@@ -14,10 +14,10 @@
 				<div class="page-share" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
 					<span>Поделиться статьей</span>
 					<ul class="footer-social">
-						<li><a href="#"><img src="{% static 'img/google-ico-2.svg' %}" alt=""></a></li>
-						<li><a href="#"><img src="{% static 'img/inst-ico-2.svg' %}" alt=""></a></li>
-						<li><a href="#"><img src="{% static 'img/whatsApp-ico-2.svg' %}" alt=""></a></li>
-						<li><a href="#"><img src="{% static 'img/youtube-ico-2.svg' %}" alt=""></a></li>
+						<li><a target="_blank" rel="nofollow" href="https://www.facebook.com/sharer.php?src=sp&u=https://3stypeni.ru/articles/{{ article.name_slug }}&title={{ article.name }}&utm_source=share2"><img src="{% static 'img/s-fb.png' %}" alt=""></a></li>
+						<li><a target="_blank" rel="nofollow" href="https://connect.ok.ru/offer?url=https://3stypeni.ru/articles/{{ article.name_slug }}&title={{ article.name }}&utm_source=share2"><img src="{% static 'img/s-ok.png' %}" alt=""></a></li>
+						<li><a target="_blank" rel="nofollow" href="https://api.whatsapp.com/send?text=https://3stypeni.ru/articles/{{ article.name_slug }}&utm_source=share2"><img src="{% static 'img/s-wt.png' %}" alt=""></a></li>
+						<li><a target="_blank" rel="nofollow" href="https://vk.com/share.php?url=https://3stypeni.ru/articles/{{ article.name_slug }}&title={{ article.name }}&utm_source=share2"><img src="{% static 'img/s-vk.png' %}" alt=""></a></li>
 					</ul>
 				</div>
 			</div>
