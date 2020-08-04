@@ -12,22 +12,22 @@
 				<div class="header-info">
 					<div class="header-col header-col__1">
 						<div class="input-block">
-							<div class="select">
-								<div class="select-main">
-									<div class="select-text">Ваш город</div>
-									<div class="input-icon">
-										<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
-									</div>
-								</div>
-								<div class="select-info">
-									<ul>
-                                        {% for town in towns %}
-										<li>{{ town.name }}</li>
-										{% endfor %}
-									</ul>
-								</div>
-								<input type="text" name="text" class="select-value">
-							</div>
+							   <div class="select">
+                                        <div class="select-main">
+                                            <div class="select-text">[[town_name]]</div>
+                                            <div class="input-icon">
+                                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
+                                            </div>
+                                        </div>
+                                        <div class="select-info">
+                                            <ul>
+                                                {% for town in towns %}
+                                                    <li data-slug="{{ town.name_slug }}"  @click='changeTown("{{ town.name }}")'>{{ town.name }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <input type="text" name="town" class="select-value1" v-model="town">
+                                    </div>
 						</div>
 						<p class="header-city"></p>
 					</div>

@@ -31,9 +31,10 @@ def consultation(request):
 
 def add_consultation(request):
     if request.POST:
-        form = ConsultationForm(request.POST)
-        if form.is_valid():
-            form.save()
+        if not request.POST.get('age') or not request.POST.get('comment') != '':
+            form = ConsultationForm(request.POST)
+            if form.is_valid():
+                form.save()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     towns = Town.objects.all()
 def credit_calculator(request):
@@ -103,17 +104,17 @@ def contact(request):
 
 def sell(request):
     if request.POST:
-
-        form = SellForm(request.POST)
-        new_ads = None
-        if form.is_valid():
-            new_ads = form.save()
-            if new_ads:
-                for f in request.FILES.getlist('images'):
-                    AdsImage.objects.create(ads_id=new_ads.id, image=f).save()
-        else:
-            pass
-
+        print(request.POST)
+        if not request.POST.get('age') or not request.POST.get('comment') !='':
+            form = SellForm(request.POST)
+            new_ads = None
+            if form.is_valid():
+                new_ads = form.save()
+                if new_ads:
+                    for f in request.FILES.getlist('images'):
+                        AdsImage.objects.create(ads_id=new_ads.id, image=f).save()
+            else:
+                pass
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     towns = Town.objects.all()
     sellForm = SellForm()
