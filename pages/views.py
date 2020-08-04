@@ -16,6 +16,7 @@ def index(request):
     allSubCategories = SubCategory.objects.all()
     towns = Town.objects.all()
     allMetros = Metro.objects.all()
+    is_index_page=True
 
 
     return render(request, 'pages/index.html', locals())
