@@ -10,8 +10,7 @@
             <div class="wrapper">
                 <div class="main-wrap" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
                     <h1 class="main-title">Поиск недвижимости</h1>
-
-                    <form @submit.prevent="searchIt">
+                    <form @submit.prevent="sendForm">
                         <div class="main-row">
                             <div class="main-col">
                                 <div class="input-block">
@@ -76,8 +75,9 @@
                             <div class="main-col">
                                 <div class="input-block">
                                     <div class="select">
+
                                         <div class="select-main">
-                                            <div class="select-text">[[town_name]]</div>
+                                            <div class="select-text">[[town_name2]]</div>
                                             <div class="input-icon">
                                                 <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5938 0.578125L12 1.98438L6 7.98438L0 1.98438L1.40625 0.578125L6 5.17188L10.5938 0.578125Z" fill="#383838"/></svg>
                                             </div>
@@ -416,6 +416,7 @@
             delimiters: ['[[', ']]'],
             el: '#app',
             data: {
+                search_type:'all',
                 page:1,
                 pages:1,
                 modal_send:false,
@@ -429,7 +430,8 @@
                 subcat:'',
                 subcat_id:0,
                 town:'',
-                town_name:'{{ towns.first.name }}',
+                town_name1:'{{ towns.first.name }}',
+                town_name2:'{{ towns.first.name }}',
                 building_type:'any',
                 house_type:'',
                 rooms:'',
@@ -460,6 +462,7 @@
                  this.$nextTick(function () {
                     this.cat = '{{ allCategories.first.name_slug }}'
                     this.town = '{{ towns.first.name_slug }}'
+                     this.searchIt()
 
 
                    //this.getInfo('getSubcats','{{ allCategories.first.name_slug }}')
@@ -473,7 +476,6 @@
                     this.getInfo('getSubcats',this.cat)
                 },
                 town: function (val) {
-
                     this.getInfo('getMetros',this.town)
                 },
                 subcat_id: function (val) {
@@ -495,6 +497,10 @@
                 }
             },
             methods:{
+                sendForm(){
+                    this.search_type = ''
+                    this.searchIt()
+                },
                 sendModal(){
                     let body = {
                         'number':this.modal_ads_number,
@@ -535,8 +541,8 @@
                     this.cat = event.target.dataset.slug
                 },
                 changeTown(tname){
-                    this.town_name =tname
-                    console.log(this.town_name)
+
+
                     this.town = event.target.dataset.slug
                 },
                 changeMetro(id){
@@ -583,7 +589,9 @@
                             }
 
                             if (action ==='getMetros'){
-                                this.metros = res
+                                this.metros = res['metros']
+                                this.town_name1 = res['town']
+                                this.town_name2 = res['town']
                             }
 
                             if (action ==='getSubcatInfo'){
@@ -599,6 +607,7 @@
                 searchIt(){
                     this.ads=[]
                     let body = {
+                        'search_type':this.search_type,
                         'page':this.page,
                         'order':this.order,
                         'cat':this.cat,

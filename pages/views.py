@@ -172,7 +172,7 @@ def get_info(request):
                 'type':metro.name
             })
 
-        return JsonResponse(metros, safe=False)
+        return JsonResponse({'town':town.name,'metros':metros}, safe=False)
 
     if request_body['action'] == 'getSubcatInfo':
         subcategory = SubCategory.objects.get(id=request_body['value'])
@@ -191,61 +191,66 @@ def get_info(request):
 def searchIt(request):
     request_unicode = request.body.decode('utf-8')
     request_body = json.loads(request_unicode)
-
     result=[]
     filterAds= False
-    allAds = Ads.objects.filter(is_publish=True,
-                                action_type=request_body['action_type'],
-                                subcategory_id=request_body['subcat'],
-                                town__name_slug=request_body['town'],
-                                currency_type=request_body['currency']).order_by(request_body['order'])
 
-    if request_body['start_price'] == '':
-        start_price = 0
+    if request_body['search_type'] == 'all':
+        allAds = Ads.objects.filter(is_publish=True).order_by(request_body['order'])
     else:
-        start_price = request_body['start_price']
+        allAds = Ads.objects.filter(is_publish=True,
+                                    action_type=request_body['action_type'],
+                                    subcategory_id=request_body['subcat'],
+                                    town__name_slug=request_body['town'],
+                                    currency_type=request_body['currency']).order_by(request_body['order'])
 
-    allAds = allAds.filter(Q(price__gte=start_price) & Q(price__lte=request_body['end_price']))
+        if request_body['start_price'] == '':
+            start_price = 0
+        else:
+            start_price = request_body['start_price']
 
-    if request_body['square_total_from'] !='' and request_body['square_total_to'] !='':
-        allAds = allAds.filter(Q(square_total__gte=request_body['square_total_from']) & Q(square_total__lte=request_body['square_total_to']))
-    elif request_body['square_total_from'] !='' and request_body['square_total_to'] =='':
-        allAds = allAds.filter(square_total__gte=request_body['square_total_from'])
-    elif request_body['square_total_from'] =='' and request_body['square_total_to'] !='':
-        allAds = allAds.filter(square_total__lte=request_body['square_total_to'])
+        allAds = allAds.filter(Q(price__gte=start_price) & Q(price__lte=request_body['end_price']))
 
-    if request_body['square_kitchen_from'] !='' and request_body['square_kitchen_to'] !='':
-        allAds = allAds.filter(Q(square_kitchen__gte=request_body['square_kitchen_from']) & Q(square_kitchen__lte=request_body['square_kitchen_to']))
-    elif request_body['square_kitchen_from'] !='' and request_body['square_kitchen_to'] =='':
-        allAds = allAds.filter(square_kitchen__gte=request_body['square_kitchen_from'])
-    elif request_body['square_kitchen_from'] =='' and request_body['square_kitchen_to'] !='':
-        allAds = allAds.filter(square_kitchen__lte=request_body['square_kitchen_to'])
+        if request_body['square_total_from'] !='' and request_body['square_total_to'] !='':
+            allAds = allAds.filter(Q(square_total__gte=request_body['square_total_from']) & Q(square_total__lte=request_body['square_total_to']))
+        elif request_body['square_total_from'] !='' and request_body['square_total_to'] =='':
+            allAds = allAds.filter(square_total__gte=request_body['square_total_from'])
+        elif request_body['square_total_from'] =='' and request_body['square_total_to'] !='':
+            allAds = allAds.filter(square_total__lte=request_body['square_total_to'])
 
-    if request_body['rooms'] !='':
+        if request_body['square_kitchen_from'] !='' and request_body['square_kitchen_to'] !='':
+            allAds = allAds.filter(Q(square_kitchen__gte=request_body['square_kitchen_from']) & Q(square_kitchen__lte=request_body['square_kitchen_to']))
+        elif request_body['square_kitchen_from'] !='' and request_body['square_kitchen_to'] =='':
+            allAds = allAds.filter(square_kitchen__gte=request_body['square_kitchen_from'])
+        elif request_body['square_kitchen_from'] =='' and request_body['square_kitchen_to'] !='':
+            allAds = allAds.filter(square_kitchen__lte=request_body['square_kitchen_to'])
 
-        allAds = allAds.filter(rooms__exact=request_body['rooms'])
+        if request_body['rooms'] !='':
 
-    if request_body['floor'] != '':
+            allAds = allAds.filter(rooms__exact=request_body['rooms'])
 
-        allAds = allAds.filter(floor__exact=request_body['floor'])
+        if request_body['floor'] != '':
 
-    if request_body['floors'] != '':
+            allAds = allAds.filter(floor__exact=request_body['floor'])
 
-        allAds = allAds.filter(floor_total__exact=request_body['floors'])
+        if request_body['floors'] != '':
+
+            allAds = allAds.filter(floor_total__exact=request_body['floors'])
 
 
 
-    if request_body['building_type'] == 'old':
-        allAds = allAds.filter(is_new_building=False)
-    if request_body['building_type'] == 'new':
-        allAds = allAds.filter(is_new_building=True)
+        if request_body['building_type'] == 'old':
+            allAds = allAds.filter(is_new_building=False)
+        if request_body['building_type'] == 'new':
+            allAds = allAds.filter(is_new_building=True)
 
-    if request_body['house_type'] != '':
+        if request_body['house_type'] != '':
 
-        allAds = allAds.filter(house_type__exact=request_body['house_type'])
+            allAds = allAds.filter(house_type__exact=request_body['house_type'])
 
-    if request_body['metro'] != '0':
-        allAds = allAds.filter(metro__exact=request_body['metro'])
+        if request_body['metro'] != '0':
+            allAds = allAds.filter(metro__exact=request_body['metro'])
+
+
 
 
 
