@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% load mytags %}
+<realty-feed xmlns="http://webmaster.yandex.ru/schemas/feed/realty/2010-06">
+    <generation-date>{{ created }}</generation-date>
+    {% for ad in ads %}
+        <offer internal-id="{{ ad.number }}">
+            {% if ad.action_type == 'RT' %}<type>аренда</type>{% elif ad.action_type == 'SL' %}<type>продажа</type>{% endif %}
+            <category>коммерческая</category>
+            {% if ad.subcategory.name == 'Офис' %} <commercial-type>office</commercial-type>{% endif %}
+            {% if ad.subcategory.name == 'Торговая площадь' %} <commercial-type>free purpose</commercial-type>{% endif %}
+            {% if ad.subcategory.name == 'Складская площадь' %} <commercial-type>warehouse</commercial-type>{% endif %}
+            {% if ad.subcategory.name == 'Производственное помещение' %} <commercial-type>manufacturing</commercial-type>{% endif %}
+            {% if ad.subcategory.name == 'Помещение свободного назначения' %} <commercial-type>free purpose</commercial-type>{% endif %}
+            {% if ad.subcategory.name == 'Гаражи' %} <commercial-type>free purpose</commercial-type>{% endif %}
+            {% if ad.subcategory.name == 'ИЖС' %} <commercial-type>land</commercial-type>{% endif %}
+            {% if ad.subcategory.name == 'СНТ (ДНП)' %} <commercial-type>land</commercial-type>{% endif %}
+            {% if ad.subcategory.name == 'ЛПХ' %} <commercial-type>land</commercial-type>{% endif %}
+            {% if ad.subcategory.name == 'Промназначения' %} <commercial-type>land</commercial-type>{% endif %}
+            <creation-date>{{ ad.created_at | get_create_time }}</creation-date>
+            <location>
+                <country>Россия</country>
+                <locality-name>{{ ad.town.name }}</locality-name>
+                <address>{{ ad.street }}, {{ ad.street_number }}</address>
+            </location>
+            <sales-agent>
+                <category>agency</category>
+                <phone>{{ ad.created.phone }}</phone>
+            </sales-agent>
+            <price>
+                <value>{{ ad.price }}</value>
+                <currency>{{ ad.currency_type }}</currency>
+            </price>
+
+        </offer>
+
+    {% endfor %}
+
+</realty-feed>

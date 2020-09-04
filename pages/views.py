@@ -106,7 +106,7 @@ def contact(request):
 def sell(request):
     if request.POST:
         print(request.POST)
-        if not request.POST.get('age') or not request.POST.get('comment') !='':
+        if not request.POST.get('agree') or not request.POST.get('comment') !='':
             form = SellForm(request.POST)
             new_ads = None
             if form.is_valid():

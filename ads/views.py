@@ -10,12 +10,21 @@ def show_ads(request,ads_number):
 
     return render(request, 'pages/ads.html', locals())
 
-def feed(request,):
+def living_feed(request,):
     template_vars = {}
-    template_vars['ads'] = Ads.objects.filter(is_publish=True, is_in_ya_feed=True)
+    template_vars['ads'] = Ads.objects.filter(is_living=True,is_publish=True, is_in_ya_feed=True)
     template_vars['created'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S+03:00')
 
-    t = loader.get_template('pages/feed.xml')
+    t = loader.get_template('pages/l_feed.xml')
+    c = template_vars
+    return HttpResponse(t.render(c),content_type='text/xml')
+
+def comm_feed(request,):
+    template_vars = {}
+    template_vars['ads'] = Ads.objects.filter(is_living=False,is_publish=True, is_in_ya_feed=True)
+    template_vars['created'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S+03:00')
+
+    t = loader.get_template('pages/c_feed.xml')
     c = template_vars
     return HttpResponse(t.render(c),content_type='text/xml')
 
